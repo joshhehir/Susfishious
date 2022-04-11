@@ -5,8 +5,6 @@ using UnityEngine;
 public class Interaction : MonoBehaviour
 {
     private SpriteRenderer render;
-    [SerializeField]
-    private GameEvent modulePickup;
 
     // Start is called before the first frame update
     void Start()

@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Killzone
   - Crosshair
   - Note
@@ -12,6 +13,9 @@ TagManager:
   - StartText
   - RhythmAudio
   - ScoreFloatText
+=======
+  - Interaction
+>>>>>>> dd0e5480 (integrated dialogue into 3D world)
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,6 @@ public class Character : MonoBehaviour, IInteract
             dialoguePool.AddThread(t);
         }
         dialoguePool.LoadProgress();
-        currentDialogue.thread = dialoguePool.First;
     }
 
     private void OnApplicationQuit()
@@ -43,7 +42,7 @@ public class Character : MonoBehaviour, IInteract
     public void Interact()
     {
         currentDialogue.thread = dialoguePool.GetStory();
-        enterDialogue.Raise();
+        if (currentDialogue.thread != null) enterDialogue.Raise();
     }
 
     public void AddToPriority(Thread t)

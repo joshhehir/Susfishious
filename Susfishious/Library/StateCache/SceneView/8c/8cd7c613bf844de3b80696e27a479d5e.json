@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":-7.890859603881836,"y":0.5658808350563049,"z":-20.04154396057129},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":1.8722573518753052,"orthographic":true}
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":4.495089530944824,"y":-0.39796334505081179,"z":-14.255324363708496},"rotation":{"x":-0.09709804505109787,"y":0.8369157314300537,"z":-0.1577494740486145,"w":-0.5150741934776306},"size":12.396125793457032,"orthographic":false}
@@ -15,3 +16,6 @@
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":4.290016174316406,"y":4.322543144226074,"z":-22.105031967163087},"rotation":{"x":-0.25398293137550356,"y":-0.2260812669992447,"z":0.06119069457054138,"w":-0.9384530782699585},"size":2.7881619930267336,"orthographic":false}
 >>>>>>> 659c3704 (added post processing, movement and such)
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":14.131324768066407,"y":1.7433030605316163,"z":-24.09166145324707},"rotation":{"x":0.258328378200531,"y":-0.014209253713488579,"z":0.003712412668392062,"w":0.9659863710403442},"size":1.6673563718795777,"orthographic":false}
+>>>>>>> dd0e5480 (integrated dialogue into 3D world)

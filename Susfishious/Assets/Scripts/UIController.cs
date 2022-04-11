@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class UIController : MonoBehaviour
 {
     private PlayerInput inputs;
-    private InputAction interact;
 
     [SerializeField]
     private GameObject dialogueUI;
@@ -17,7 +16,6 @@ public class UIController : MonoBehaviour
     void Start()
     {
         inputs = GameObject.Find("Player").GetComponent<PlayerInput>();
-        interact = inputs.actions["Interact"];
         
     }
 
@@ -30,10 +28,6 @@ public class UIController : MonoBehaviour
             {
                 Debug.Log("UI Disabled, actionmap set to character");
                 inputs.SwitchCurrentActionMap("Character");
-            }
-            if (interact.triggered)
-            {
-                ActivateDialogueUI();
             }
         }
     }

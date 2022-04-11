@@ -12,9 +12,9 @@ This is a test
 *[i hate you] -> rude
 
 ==cool
-cool cool
+cool cool #RESUME: cool
 ->END
 
 ==rude
-that was very rude and mean. I only just met you
+that was very rude and mean. I only just met you #RESUME: rude
 ->END

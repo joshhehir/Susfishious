@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class DialoguePool : MonoBehaviour
 {
@@ -67,11 +68,16 @@ public class DialoguePool : MonoBehaviour
 
     public Thread GetStory()
     {
+
         available.Remove(currentThread);
-        if (!currentThread.Complete)
+        if (currentThread != null)
         {
-            available.Insert(available.Count, currentThread);
+            if (!currentThread.Complete)
+            {
+                available.Insert(available.Count, currentThread);
+            }
         }
+        
 
         if (priority.Count > 0)
         {
@@ -80,7 +86,7 @@ public class DialoguePool : MonoBehaviour
         }
         else
         {
-            currentThread = available[0];
+            currentThread = available.FirstOrDefault();
             foreach (Thread t in available)
             {
                 if (t.priority > currentThread.priority)
