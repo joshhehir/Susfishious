@@ -3,6 +3,7 @@ Library\Bee\artifacts\mvdfrm\UnityEditor.UI.ref.dll_4C98D3F7040CD4F5.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.TestRunner.ref.dll_E55D0F7C63F01D9E.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.UI.ref.dll_08FEAA520A2EFD60.mvfrm
 <<<<<<< HEAD
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\UnityEditor.Graphs.dll_CED76DA8F50B735C.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.CoreModule.dll_A05F4DA2ACD0932A.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.DeviceSimulatorModule.dll_AE0FF8E3013188B7.mvfrm
@@ -96,6 +97,8 @@ Library\Bee\artifacts\mvdfrm\UnityEditor.iOS.Extensions.Xcode.dll_145BCD6EAD3106
 Library\Bee\artifacts\mvdfrm\UnityEditor.WebGL.Extensions.dll_A15C968E5B198726.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.WindowsStandalone.Extensions.dll_2A6358F43136EB16.mvfrm
 =======
+=======
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 Library\Bee\artifacts\mvdfrm\UnityEditor.Graphs.dll_7E0ED8BA97B5D66C.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.CoreModule.dll_F3B65D264982063A.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.DeviceSimulatorModule.dll_721B38410669F2A7.mvfrm
@@ -179,5 +182,9 @@ Library\Bee\artifacts\mvdfrm\UnityEngine.VirtualTexturingModule.dll_770E46584F35
 Library\Bee\artifacts\mvdfrm\UnityEngine.VRModule.dll_2DA05F870CAFDC72.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.WindModule.dll_8D260BA182BDEFCE.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.XRModule.dll_605F228B95EA29D0.mvfrm
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\UnityEditor.WindowsStandalone.Extensions.dll_AA910292871F3906.mvfrm
 >>>>>>> 164ed11a (added models)
+=======
+Library\Bee\artifacts\mvdfrm\UnityEditor.WindowsStandalone.Extensions.dll_AA910292871F3906.mvfrm
+>>>>>>> ea510710 (imported dialogue system from previous project.)

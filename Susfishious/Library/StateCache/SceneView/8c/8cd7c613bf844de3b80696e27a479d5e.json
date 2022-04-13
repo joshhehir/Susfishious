@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":-7.890859603881836,"y":0.5658808350563049,"z":-20.04154396057129},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":1.8722573518753052,"orthographic":true}
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":4.495089530944824,"y":-0.39796334505081179,"z":-14.255324363708496},"rotation":{"x":-0.09709804505109787,"y":0.8369157314300537,"z":-0.1577494740486145,"w":-0.5150741934776306},"size":12.396125793457032,"orthographic":false}
 >>>>>>> 164ed11a (added models)
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":520.4566040039063,"y":297.5954895019531,"z":-1.798548698425293},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":428.0546569824219,"orthographic":true}
+>>>>>>> ea510710 (imported dialogue system from previous project.)

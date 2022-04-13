@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\UnityEditor.Graphs.dll_CED76DA8F50B735C.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.CoreModule.dll_A05F4DA2ACD0932A.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.DeviceSimulatorModule.dll_AE0FF8E3013188B7.mvfrm
@@ -100,6 +101,8 @@ Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.IonicZip.dll_5B33B8AAB36BF57F
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.YamlDotNet.dll_F79D23A8D31533AD.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_A90A4A8A03DE43CC.mvfrm
 =======
+=======
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 Library\Bee\artifacts\mvdfrm\UnityEditor.Graphs.dll_7E0ED8BA97B5D66C.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.CoreModule.dll_F3B65D264982063A.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.DeviceSimulatorModule.dll_721B38410669F2A7.mvfrm
@@ -187,5 +190,9 @@ Library\Bee\artifacts\mvdfrm\Unity.Plastic.Antlr3.Runtime.dll_7EBC9470BA5449D5.m
 Library\Bee\artifacts\mvdfrm\Unity.Plastic.Newtonsoft.Json.dll_D656663082800790.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.IonicZip.dll_1B4069A808EF9F3C.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.YamlDotNet.dll_D1B5DC90024ED800.mvfrm
+<<<<<<< HEAD
 Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_832303713317E81F.mvfrm
 >>>>>>> 164ed11a (added models)
+=======
+Library\Bee\artifacts\mvdfrm\Unity.VisualScripting.Antlr3.Runtime.dll_832303713317E81F.mvfrm
+>>>>>>> ea510710 (imported dialogue system from previous project.)

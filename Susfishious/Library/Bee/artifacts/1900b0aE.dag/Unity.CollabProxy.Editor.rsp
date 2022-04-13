@@ -2,10 +2,14 @@
 -out:"Library/Bee/artifacts/1900b0aE.dag/Unity.CollabProxy.Editor.dll"
 -refout:"Library/Bee/artifacts/1900b0aE.dag/Unity.CollabProxy.Editor.ref.dll"
 <<<<<<< HEAD
+<<<<<<< HEAD
 -define:UNITY_2021_2_8
 =======
 -define:UNITY_2021_2_18
 >>>>>>> 164ed11a (added models)
+=======
+-define:UNITY_2021_2_18
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 -define:UNITY_2021_2
 -define:UNITY_2021
 -define:UNITY_5_3_OR_NEWER
@@ -117,9 +121,10 @@
 -define:ENABLE_TERRAIN
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
--define:ENABLE_LEGACY_INPUT_MANAGER
+-define:ENABLE_INPUT_SYSTEM
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+<<<<<<< HEAD
 <<<<<<< HEAD
 -r:"Assets/DOTween/DOTween.dll"
 -r:"Assets/DOTween/Editor/DOTweenEditor.dll"
@@ -350,6 +355,8 @@
 -r:"C:/Users/fishe/Desktop/work/susficious/Susfishious/Library/PackageCache/com.unity.visualscripting@1.7.6/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll"
 -r:"C:/Users/fishe/Desktop/work/susficious/Susfishious/Library/PackageCache/com.unity.visualscripting@1.7.6/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 =======
+=======
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
@@ -634,7 +641,10 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Serialization.dll"
+<<<<<<< HEAD
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.cinemachine@2.8.4/Runtime/ThirdParty/clipper_library.dll"
+=======
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.collab-proxy@1.15.13/Lib/Editor/PlasticSCM/log4netPlastic.dll"
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.collab-proxy@1.15.13/Lib/Editor/PlasticSCM/Unity.Plastic.Antlr3.Runtime.dll"
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.collab-proxy@1.15.13/Lib/Editor/PlasticSCM/Unity.Plastic.Newtonsoft.Json.dll"
@@ -644,7 +654,10 @@
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.visualscripting@1.7.6/Editor/VisualScripting.Core/Dependencies/DotNetZip/Unity.VisualScripting.IonicZip.dll"
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.visualscripting@1.7.6/Editor/VisualScripting.Core/Dependencies/YamlDotNet/Unity.VisualScripting.YamlDotNet.dll"
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.visualscripting@1.7.6/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
+<<<<<<< HEAD
 >>>>>>> 164ed11a (added models)
+=======
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.PlasticSCM.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Services.Core.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.Settings.Editor.ref.dll"

@@ -2,10 +2,14 @@
 -out:"Library/Bee/artifacts/1900b0aE.dag/Unity.VisualStudio.Editor.dll"
 -refout:"Library/Bee/artifacts/1900b0aE.dag/Unity.VisualStudio.Editor.ref.dll"
 <<<<<<< HEAD
+<<<<<<< HEAD
 -define:UNITY_2021_2_8
 =======
 -define:UNITY_2021_2_18
 >>>>>>> 164ed11a (added models)
+=======
+-define:UNITY_2021_2_18
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 -define:UNITY_2021_2
 -define:UNITY_2021
 -define:UNITY_5_3_OR_NEWER
@@ -117,9 +121,10 @@
 -define:ENABLE_TERRAIN
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
--define:ENABLE_LEGACY_INPUT_MANAGER
+-define:ENABLE_INPUT_SYSTEM
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+<<<<<<< HEAD
 <<<<<<< HEAD
 -r:"C:/Program Files/Unity 2021.2.8f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity 2021.2.8f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
@@ -335,6 +340,8 @@
 -r:"C:/Program Files/Unity 2021.2.8f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
 -r:"C:/Users/fishe/Desktop/work/susficious/Susfishious/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
 =======
+=======
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
@@ -620,7 +627,10 @@
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2021.2.18f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Serialization.dll"
 -r:"C:/Users/Brian/Documents/GitHub/susficious/Susfishious/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
+<<<<<<< HEAD
 >>>>>>> 164ed11a (added models)
+=======
+>>>>>>> ea510710 (imported dialogue system from previous project.)
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"

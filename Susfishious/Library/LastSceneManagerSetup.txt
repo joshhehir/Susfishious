@@ -1,9 +1,13 @@
 sceneSetups:
 <<<<<<< HEAD
+<<<<<<< HEAD
 - path: Assets/Scenes/RhythmGame.unity
 =======
 - path: Assets/Scenes/World.unity
 >>>>>>> 164ed11a (added models)
+=======
+- path: Assets/Scenes/DialogueScene.unity
+>>>>>>> ea510710 (imported dialogue system from previous project.)
   isLoaded: 1
   isActive: 1
   isSubScene: 0
