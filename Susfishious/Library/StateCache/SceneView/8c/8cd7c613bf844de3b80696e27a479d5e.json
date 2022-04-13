@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":false,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":-7.890859603881836,"y":0.5658808350563049,"z":-20.04154396057129},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":1.8722573518753052,"orthographic":true}
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":4.495089530944824,"y":-0.39796334505081179,"z":-14.255324363708496},"rotation":{"x":-0.09709804505109787,"y":0.8369157314300537,"z":-0.1577494740486145,"w":-0.5150741934776306},"size":12.396125793457032,"orthographic":false}
@@ -11,3 +12,6 @@
 =======
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":true,"pivot":{"x":591.2198486328125,"y":248.85101318359376,"z":6.855923175811768},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":336.2112121582031,"orthographic":true}
 >>>>>>> ac86bda7 (dialogue is now serialized)
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"m_AlwaysRefresh":false,"showFog":true,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true,"showVisualEffectGraphs":true,"m_FxEnabled":true},"in2DMode":false,"pivot":{"x":4.290016174316406,"y":4.322543144226074,"z":-22.105031967163087},"rotation":{"x":-0.25398293137550356,"y":-0.2260812669992447,"z":0.06119069457054138,"w":-0.9384530782699585},"size":2.7881619930267336,"orthographic":false}
+>>>>>>> 659c3704 (added post processing, movement and such)

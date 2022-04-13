@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 { "pid": 35942, "tid": 1, "ts": 1649788256501820, "dur": 86971, "ph": "X", "name": "BuildProgram", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1649788256502627, "dur": 36626, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1649788256576100, "dur": 3419, "ph": "X", "name": "OutputData.Write", "args": {} },
@@ -38,3 +39,12 @@
 { "pid": 35942, "tid": 1, "ts": 1649583174345270, "dur": 1235, "ph": "X", "name": "", "args": {} },
 { "pid": 35942, "tid": 1, "ts": 1649583174344373, "dur": 2167, "ph": "X", "name": "Write chrome-trace events", "args": {} },
 >>>>>>> ac86bda7 (dialogue is now serialized)
+=======
+{ "pid": 35942, "tid": 1, "ts": 1649591786901211, "dur": 377929, "ph": "X", "name": "BuildProgram", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1649591786902315, "dur": 81882, "ph": "X", "name": "BuildProgramContextConstructor", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1649591787210440, "dur": 5943, "ph": "X", "name": "OutputData.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1649591787216388, "dur": 62723, "ph": "X", "name": "Backend.Write", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1649591787217129, "dur": 44131, "ph": "X", "name": "JsonToString", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1649591787284813, "dur": 1324, "ph": "X", "name": "", "args": {} },
+{ "pid": 35942, "tid": 1, "ts": 1649591787283730, "dur": 2463, "ph": "X", "name": "Write chrome-trace events", "args": {} },
+>>>>>>> 659c3704 (added post processing, movement and such)

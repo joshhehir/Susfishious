@@ -122,10 +122,15 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 <<<<<<< HEAD
+<<<<<<< HEAD
 -define:ENABLE_LEGACY_INPUT_MANAGER
 =======
 -define:ENABLE_INPUT_SYSTEM
 >>>>>>> ea510710 (imported dialogue system from previous project.)
+=======
+-define:ENABLE_INPUT_SYSTEM
+-define:UNITY_POST_PROCESSING_STACK_V2
+>>>>>>> 659c3704 (added post processing, movement and such)
 -define:PACKAGE_INPUT_SYSTEM_EXISTS
 -define:MODULE_ANIMATION_EXISTS
 -define:MODULE_PHYSICS_EXISTS

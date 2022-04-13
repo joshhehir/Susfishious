@@ -122,6 +122,10 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_INPUT_SYSTEM
+<<<<<<< HEAD
+=======
+-define:UNITY_POST_PROCESSING_STACK_V2
+>>>>>>> 659c3704 (added post processing, movement and such)
 -define:CONDITIONAL_IGNORE_SUPPORTED
 -define:BURST_INSTALLED
 -define:TEST_FRAMEWORK_1_1_18_OR_NEWER
