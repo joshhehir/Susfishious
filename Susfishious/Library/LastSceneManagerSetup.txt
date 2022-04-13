@@ -1,5 +1,9 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/RhythmGame.unity
+=======
+- path: Assets/Scenes/World.unity
+>>>>>>> 164ed11a (added models)
   isLoaded: 1
   isActive: 1
   isSubScene: 0
