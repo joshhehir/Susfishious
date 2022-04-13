@@ -24,6 +24,34 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
+            ""name"": ""Character"",
+            ""id"": ""ebd924ea-1bb7-49cf-bd7e-fcbce23461a6"",
+            ""actions"": [
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""d76c7339-130d-4328-abad-c08cf4e3cd73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f2daef00-d45d-4794-a68f-eef4e2abe031"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""Dialogue"",
             ""id"": ""43f3fab9-37a4-4b87-8999-e5e035b94423"",
             ""actions"": [
@@ -54,6 +82,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
+        // Character
+        m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
+        m_Character_Interact = m_Character.FindAction("Interact", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Next = m_Dialogue.FindAction("Next", throwIfNotFound: true);
@@ -113,6 +144,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
+    // Character
+    private readonly InputActionMap m_Character;
+    private ICharacterActions m_CharacterActionsCallbackInterface;
+    private readonly InputAction m_Character_Interact;
+    public struct CharacterActions
+    {
+        private @Controls m_Wrapper;
+        public CharacterActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Interact => m_Wrapper.m_Character_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Character; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CharacterActions set) { return set.Get(); }
+        public void SetCallbacks(ICharacterActions instance)
+        {
+            if (m_Wrapper.m_CharacterActionsCallbackInterface != null)
+            {
+                @Interact.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_CharacterActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public CharacterActions @Character => new CharacterActions(this);
+
     // Dialogue
     private readonly InputActionMap m_Dialogue;
     private IDialogueActions m_DialogueActionsCallbackInterface;
@@ -145,6 +209,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public DialogueActions @Dialogue => new DialogueActions(this);
+    public interface ICharacterActions
+    {
+        void OnInteract(InputAction.CallbackContext context);
+    }
     public interface IDialogueActions
     {
         void OnNext(InputAction.CallbackContext context);

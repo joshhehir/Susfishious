@@ -17,84 +17,41 @@ public class Character : MonoBehaviour, IInteract
     [SerializeField]
     private DialogueHolder currentDialogue;
 
-    [SerializeField]
-    private List<Thread> threads = new List<Thread>();
-    [SerializeField]
-    private List<Thread> available = new List<Thread>();
-    [SerializeField]
-    private List<Thread> priority = new List<Thread>();
-    [SerializeField]
-    private Thread currentThread;
+    private DialoguePool dialoguePool;
 
     private void Start()
     {
+        dialoguePool = GetComponent<DialoguePool>();
         foreach (Thread t in GetComponentsInChildren<Thread>())
         {
-            threads.Add(t);
-            if (t.GetThreadTags()[0] == "FIRST")
-            {
-                priority.Add(t);
-                currentThread = t;
-            }
-            if (!t.locked)
-            {
-                available.Add(t);
-            }
+            dialoguePool.AddThread(t);
         }
-        currentDialogue.thread = available[0];
+        dialoguePool.LoadProgress();
+        currentDialogue.thread = dialoguePool.First;
+    }
+
+    private void OnApplicationQuit()
+    {
+        dialoguePool.SaveThreadProgress();
+    }
+
+    private void OnDisable()
+    {
+        dialoguePool.SaveThreadProgress();
     }
 
     public void Interact()
     {
-        GetStory();
-        //PlayerController.instance.StartDialogue();
+        currentDialogue.thread = dialoguePool.GetStory();
+        enterDialogue.Raise();
     }
 
     public void AddToPriority(Thread t)
     {
-        if (priority.Contains(t)) return;
-        priority.Add(t);
+        dialoguePool.AddPriority(t);
     }
 
-    public Thread GetThreadByName(string name)
-    {
-        foreach (Thread t in threads)
-        {
-            if (t.name == name)
-            {
-                return t;
-            }
-        }
-        return null;
-    }
+    
 
-    public void GetStory()
-    {
-        available.Remove(currentThread);
-        if (!currentThread.Complete)
-        {
-            available.Insert(available.Count, currentThread);
-        }
-        
-        if (priority.Count > 0)
-        {
-            currentThread = priority[0];
-            priority.RemoveAt(0);
-        }
-        else
-        {
-            currentThread = available[0];
-            foreach (Thread t in available)
-            {
-                if (t.priority > currentThread.priority)
-                {
-                    currentThread = t;
-                }
-            }
-            
-        }
-        
-        currentDialogue.thread = currentThread;
-        enterDialogue.Raise();
-    }
+    
 }

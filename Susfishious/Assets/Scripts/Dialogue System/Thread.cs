@@ -10,6 +10,7 @@ public enum ThreadPriority
     HIGH,
     ESSENTIAL 
 }
+
 [System.Serializable]
 public class Thread : MonoBehaviour, IListenGameEvent
 {
@@ -19,6 +20,7 @@ public class Thread : MonoBehaviour, IListenGameEvent
     public Story story;
     public ThreadPriority priority;
     private string currentKnot = "main";
+    private string currentStitch;
 
     public bool locked;
 
@@ -32,6 +34,22 @@ public class Thread : MonoBehaviour, IListenGameEvent
     private void Awake()
     {
         InitializeStory();
+    }
+
+    public void LoadProgress(string s)
+    {
+        story.state.LoadJson(s);
+    }
+
+    public void UpdatePath(string s)
+    {
+        currentKnot = s.Split('.')[0];
+        currentStitch = s.Contains('.') ? currentStitch = s.Split('.')[1] : "";
+    }
+
+    public string GetState()
+    {
+        return story.state.ToJson();
     }
 
     public void OnEventRaised(GameEvent gameEvent)
@@ -116,7 +134,6 @@ public class Thread : MonoBehaviour, IListenGameEvent
     {
         foreach (string t in story.currentTags)
         {
-            Debug.Log(t);
             if (t.Contains("EVENT"))
             {
                 string s = t.Replace("EVENT:", "").Trim();
@@ -171,6 +188,16 @@ public class Thread : MonoBehaviour, IListenGameEvent
         return story.globalTags != null ? story.globalTags : new List<string>() { "Empty" };
     }
 
+    private void ChangePath()
+    {
+        string pathString = currentKnot;
+        if (currentStitch != "")
+        {
+            pathString += "." + currentStitch;
+        }
+        story.ChoosePathString(pathString);
+    }
+
     public Story GetCurrentStory()
     {
         if (!story.canContinue)
@@ -180,8 +207,8 @@ public class Thread : MonoBehaviour, IListenGameEvent
                 if (s.Contains("RESUME"))
                 {
 
-                    var name  = s.Replace("RESUME:", "").Trim();
-                    story.ChoosePathString(currentKnot + "." + name);
+                    currentStitch = s.Replace("RESUME:", "").Trim();
+                    ChangePath();
                 }
             }
         }

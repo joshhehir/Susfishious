@@ -2,6 +2,34 @@
     "name": "Controls",
     "maps": [
         {
+            "name": "Character",
+            "id": "ebd924ea-1bb7-49cf-bd7e-fcbce23461a6",
+            "actions": [
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "d76c7339-130d-4328-abad-c08cf4e3cd73",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f2daef00-d45d-4794-a68f-eef4e2abe031",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "Dialogue",
             "id": "43f3fab9-37a4-4b87-8999-e5e035b94423",
             "actions": [

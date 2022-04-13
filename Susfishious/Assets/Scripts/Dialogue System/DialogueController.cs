@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Ink.Runtime;
 using TMPro;
 
@@ -9,89 +10,182 @@ public class DialogueController : MonoBehaviour
 {
     [SerializeField]
     private DialogueHolder currentDialogue;
+    public float revealSpeed = 14; // characters per second
 
-    private Thread thread => currentDialogue.thread;
+    private string CurrentText => currentDialogue.thread.story.currentText;
+    private Thread Thread => currentDialogue.thread;
+
+    [SerializeField]
+    private TextMeshProUGUI dialogue;
+    [SerializeField]
+    private Image portrait;
+    [SerializeField]
+    private AudioSource soundEffects;
+    [SerializeField]
+    private AudioClip speak;
+    private int visibleCharacters = 0;
+    private float revealTimer = 0;
 
     private PlayerInput inputs;
     private InputAction continueAction;
 
     [SerializeField]
-    private GameObject dialogueUI;
-    [SerializeField]
-    private GameObject playerPortrait;
-    [SerializeField]
-    private GameObject characterPortrait;
-    [SerializeField]
-    private TMP_Text dialogue;
-    [SerializeField]
-    private TMP_Text response;
+    private Transform buttonContainer;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private List<GameObject> buttons;
+    [SerializeField]
+    private GameObject buttonPrefab;
+
+    private bool FinishedRevealing => visibleCharacters >= CurrentText.Length;
+    private void Start()
     {
         inputs = PlayerController.instance.GetComponent<PlayerInput>();
         continueAction = inputs.actions["Next"];
 
-
+        visibleCharacters = 0;
+        revealTimer = 0;
     }
 
-
-
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        if (thread != null)
+        visibleCharacters = 0;
+        if (Thread.story.canContinue)
         {
-            dialogueUI.SetActive(inputs.currentActionMap.name == "Dialogue");
-            response.text = "";
-            dialogue.text = thread.story.currentText;
-            if (thread.story.canContinue)
+            Continue();
+        }
+
+        if (Thread.story.currentChoices.Count > 0)
+        {
+            GenerateChoices();
+        }
+    }
+    private void Update()
+    {
+        if (Thread != null)
+        {
+            revealTimer += Time.deltaTime;
+
+            if (revealTimer > (1 / revealSpeed))
+            {
+                RevealCharacter();
+                revealTimer = 0;
+            }
+            if (Thread.story.canContinue)
             {
                 if (continueAction.triggered)
                 {
-                    
-                    thread.story.Continue();
-                    thread.CheckTags();
+                    if (!FinishedRevealing)
+                    {
+                        RevealAll();
+                    }
+                    else
+                    {
+                        Continue();
+                        //Thread.CheckTags();
+                        if (Thread.story.currentChoices.Count > 0)
+                        {
+                            GenerateChoices();
+                        }
+                    }
+
                 }
             }
             else
             {
-                if (thread.story.currentChoices.Count <= 0)
+                if (Thread.story.currentChoices.Count <= 0)
                 {
                     if (continueAction.triggered)
                     {
-                        //end dialogue.
-                        inputs.SwitchCurrentActionMap("Character");
+                        if (!FinishedRevealing)
+                        {
+                            RevealAll();
+                        }
+                        else
+                        {
+                            //end dialogue.
+                            Thread.CheckTags();
+
+                            gameObject.SetActive(false);
+
+                        }
                     }
                 }
-                int index = 0;
-                foreach (Choice choice in thread.story.currentChoices)
-                {
-                    index++;
-                    response.text += index + ". " + choice.text + "\n";
-                }
+
             }
-
-
-            //playerPortrait.SetActive(!thread.story.canContinue);
-            //characterPortrait.SetActive(thread.story.canContinue);
         }
+    }
+
+    public void GenerateChoices()
+    {
+        Debug.Log("generating choices");
+        List<Choice> choices = Thread.story.currentChoices;
+        Debug.Log(choices.Count);
         
+        foreach (Choice c in choices)
+        {
+            GameObject button = Instantiate(buttonPrefab);
+            buttons.Add(button);
+            button.transform.SetParent(buttonContainer);
+            button.transform.localScale = new Vector3(1, 1, 1);
+            button.GetComponentInChildren<TMP_Text>().text = c.text;
+        }
+    }
+
+    public void ChoiceMadeByButton(GameObject g)
+    {
+        foreach (GameObject gameObject in buttons)
+        {
+            if (gameObject == g)
+            {
+                MakeChoice(buttons.IndexOf(gameObject));
+            }
+        }
+    }
+
+    public void DestoryChoices()
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            Destroy(buttons[i]);
+        }
+    }
+
+    private void Continue()
+    {
+        Thread.story.Continue();
+        visibleCharacters = 0;
     }
 
     public void MakeChoice(int index)
     {
-        thread.story.ChooseChoiceIndex(index);
-        thread.story.Continue();
+        Thread.UpdatePath(Thread.story.currentChoices[index].pathStringOnChoice);
+        Thread.story.ChooseChoiceIndex(index);
+        Continue();
+        //Thread.CheckTags();
+        DestoryChoices();
+
     }
 
-    public void SetThread(Thread t)
+    private void RevealAll()
     {
-        currentDialogue.thread = t;
-        if (thread.story.canContinue)
+        visibleCharacters = CurrentText.Length;
+        dialogue.text = CurrentText;
+    }
+
+    private void RevealCharacter()
+    {
+        if (FinishedRevealing)
         {
-            thread.story.Continue();
+            return;
         }
-        
+
+        dialogue.text = CurrentText.Substring(0, ++visibleCharacters);
+
+        if (dialogue.text[dialogue.text.Length - 1] != ' ')
+        {
+            //soundEffects.pitch = 0.3f + Random.Range(0.95f, 1.05f);
+            //soundEffects.PlayOneShot(speak);
+        }
     }
 }
