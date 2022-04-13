@@ -5,12 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-<<<<<<< HEAD
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-=======
     public static PlayerController instance;
 
     private CharacterController controller;
@@ -49,18 +43,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
->>>>>>> ea510710 (imported dialogue system from previous project.)
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-=======
-        
-<<<<<<< HEAD
->>>>>>> ea510710 (imported dialogue system from previous project.)
-=======
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         Vector2 input = move.ReadValue<Vector2>();
@@ -75,6 +62,5 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(groundCheck.position, groundDistance);
->>>>>>> 659c3704 (added post processing, movement and such)
     }
 }

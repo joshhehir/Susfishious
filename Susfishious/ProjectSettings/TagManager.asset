@@ -3,19 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-<<<<<<< HEAD
-  - Killzone
-  - Crosshair
-  - Note
-  - Score
-  - Combo
-  - StartText
-  - RhythmAudio
-  - ScoreFloatText
-=======
-  - Interaction
->>>>>>> dd0e5480 (integrated dialogue into 3D world)
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -23,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - PostProcessing
+  - 
+  - 
   - 
   - 
   - 
@@ -52,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: RhythmUI
-    uniqueID: 703301053
-    locked: 0
-  - name: RhythmNotes
-    uniqueID: 1385106025
     locked: 0
