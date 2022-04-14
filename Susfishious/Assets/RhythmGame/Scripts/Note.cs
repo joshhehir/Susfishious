@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Note : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Note : MonoBehaviour
     //private RhythmAudioManager myAudioSource;
     private RhythmManager myManager;
 
+    private InputAction ActionA;
+    private InputAction ActionB;
 
     public GameObject myText;
     public GameObject Manager;
@@ -41,6 +44,8 @@ public class Note : MonoBehaviour
         //myAudioSource = Manager.GetComponent<RhythmAudioManager>();
         myManager = Manager.GetComponent<RhythmManager>();
 
+        ActionA = PlayerController.instance.input.actions["ActionA"];
+        ActionB = PlayerController.instance.input.actions["ActionB"];
 
         if (fTempo != 0)
         {
@@ -57,9 +62,33 @@ public class Note : MonoBehaviour
     {
         Scroll();
 
-        if(Input.GetKeyDown(myKey))
+        if(ActionA.triggered && myKey == KeyCode.Z)
         {
             if(bExact == true && bPressable == true && bPressed == false)
+            {
+                NoteRender.enabled = false;
+                bStart = false;
+                myText.SetActive(false);
+                myManager.PlayAudio(myDrumAudioClip);
+                myManager.AddScore(300);
+                myManager.DisplayFloatScore(300);
+
+                bPressed = true;
+            }
+            else if (bPressable == true && bExact == false && bPressed == false)
+            {
+                NoteRender.enabled = false;
+                bStart = false;
+                myText.SetActive(false);
+                myManager.PlayAudio(myDrumAudioClip);
+                myManager.AddScore(100);
+                myManager.DisplayFloatScore(100);
+                bPressed = true;
+            }
+        }
+        else if (ActionB.triggered && myKey == KeyCode.X)
+        {
+            if (bExact == true && bPressable == true && bPressed == false)
             {
                 NoteRender.enabled = false;
                 bStart = false;

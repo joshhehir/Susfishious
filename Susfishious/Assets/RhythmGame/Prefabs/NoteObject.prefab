@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1385106025
-  m_SortingLayer: 2
+  m_SortingLayerID: -1447187611
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 78776b1fb4c462c4a96f36f9a39ef095, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -160,8 +160,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1447187611
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &5397329009355667201
@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myText: {fileID: 5397329009355667203}
+  Manager: {fileID: 0}
   myDrumAudioClip: {fileID: 8300000, guid: c567b013f00542e43ab6ab0004e2f985, type: 3}
   myKey: 122
   fTempo: 120

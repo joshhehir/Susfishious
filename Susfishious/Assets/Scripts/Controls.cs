@@ -44,6 +44,33 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ActionA"",
+                    ""type"": ""Button"",
+                    ""id"": ""a09783a1-e1e8-4d7d-a2cd-23646a234a78"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionB"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf6f3af7-ffef-4230-9942-0f5a33097fa6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""089e858a-048d-4548-9e31-2a2dabf6a920"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -112,6 +139,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af6be0a2-6102-44e3-8496-005bafb2f5c6"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionA"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf1412f0-042a-4cb2-8036-5954d10839e5"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3749ff86-9fcb-4eb6-9a9e-487fd9e60141"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -150,6 +210,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Interact = m_Character.FindAction("Interact", throwIfNotFound: true);
         m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
+        m_Character_ActionA = m_Character.FindAction("ActionA", throwIfNotFound: true);
+        m_Character_ActionB = m_Character.FindAction("ActionB", throwIfNotFound: true);
+        m_Character_Start = m_Character.FindAction("Start", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Next = m_Dialogue.FindAction("Next", throwIfNotFound: true);
@@ -214,12 +277,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private ICharacterActions m_CharacterActionsCallbackInterface;
     private readonly InputAction m_Character_Interact;
     private readonly InputAction m_Character_Move;
+    private readonly InputAction m_Character_ActionA;
+    private readonly InputAction m_Character_ActionB;
+    private readonly InputAction m_Character_Start;
     public struct CharacterActions
     {
         private @Controls m_Wrapper;
         public CharacterActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_Character_Interact;
         public InputAction @Move => m_Wrapper.m_Character_Move;
+        public InputAction @ActionA => m_Wrapper.m_Character_ActionA;
+        public InputAction @ActionB => m_Wrapper.m_Character_ActionB;
+        public InputAction @Start => m_Wrapper.m_Character_Start;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -235,6 +304,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Move.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMove;
+                @ActionA.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionA;
+                @ActionA.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionA;
+                @ActionA.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionA;
+                @ActionB.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
+                @ActionB.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
+                @ActionB.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
+                @Start.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -245,6 +323,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @ActionA.started += instance.OnActionA;
+                @ActionA.performed += instance.OnActionA;
+                @ActionA.canceled += instance.OnActionA;
+                @ActionB.started += instance.OnActionB;
+                @ActionB.performed += instance.OnActionB;
+                @ActionB.canceled += instance.OnActionB;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -286,6 +373,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     {
         void OnInteract(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnActionA(InputAction.CallbackContext context);
+        void OnActionB(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
     public interface IDialogueActions
     {
