@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Interaction
+  - Note
+  - Combo
+  - Crosshair
+  - Killzone
+  - Score
+  - RhythmAudio
+  - ScoreFloatText
   layers:
   - Default
   - TransparentFX
@@ -40,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: temp
+    uniqueID: 2847779685
     locked: 0

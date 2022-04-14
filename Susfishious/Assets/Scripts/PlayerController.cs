@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float fallSpeed;
 
-    private PlayerInput input;
+    public PlayerInput input;
     private InputAction move;
 
     public Transform groundCheck;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class RhythmManager : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class RhythmManager : MonoBehaviour
     public RhythmAudioManager myAudio;
 
     private GameObject[] myNotes;
-    
+
+    private InputAction start;
 
     //float fTime = 0;
     bool bStarted = false;
@@ -20,6 +22,7 @@ public class RhythmManager : MonoBehaviour
     void Start()
     {
         myNotes = GameObject.FindGameObjectsWithTag("Note");
+        start = PlayerController.instance.input.actions["Start"];
     }
 
     void Awake()
@@ -30,7 +33,7 @@ public class RhythmManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.anyKey)
+        if(start.triggered)
         {
             if (!bStarted)
             {
@@ -45,14 +48,14 @@ public class RhythmManager : MonoBehaviour
                 bStarted = true;
             }
         }
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
-        }
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        //if(Input.GetKeyDown(KeyCode.R))
+        //{
+        //    Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+        //}
+        //if(Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Application.Quit();
+        //}
     }
 
     public void DisplayFloatScore(float aScore)
