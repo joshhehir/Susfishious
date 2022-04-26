@@ -12,10 +12,8 @@ public struct EventConnectors
 
 public class Character : MonoBehaviour, IInteract
 {
-    [SerializeField]
-    private GameEvent enterDialogue;
-    [SerializeField]
-    private DialogueHolder currentDialogue;
+    public delegate void threadPass(Thread t);
+    public static event threadPass startDialogue;
 
     private DialoguePool dialoguePool;
 
@@ -41,8 +39,7 @@ public class Character : MonoBehaviour, IInteract
 
     public void Interact()
     {
-        currentDialogue.thread = dialoguePool.GetStory();
-        if (currentDialogue.thread != null) enterDialogue.Raise();
+        startDialogue.Invoke(dialoguePool.GetStory());
     }
 
     public void AddToPriority(Thread t)

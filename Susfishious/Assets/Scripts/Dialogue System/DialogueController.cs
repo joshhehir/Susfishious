@@ -9,11 +9,12 @@ using TMPro;
 public class DialogueController : MonoBehaviour
 {
     [SerializeField]
-    private DialogueHolder currentDialogue;
-    public float revealSpeed = 14; // characters per second
+    public Thread currentThread;
 
-    private string CurrentText => currentDialogue.thread.story.currentText;
-    private Thread Thread => currentDialogue.thread;
+    private string CurrentText => currentThread.story.currentText;
+    private Thread Thread => currentThread;
+    [SerializeField]
+    private GameObject messagePrefab;
 
     [SerializeField]
     private TextMeshProUGUI dialogue;
@@ -21,10 +22,6 @@ public class DialogueController : MonoBehaviour
     private Image portrait;
     [SerializeField]
     private AudioSource soundEffects;
-    [SerializeField]
-    private AudioClip speak;
-    private int visibleCharacters = 0;
-    private float revealTimer = 0;
 
     private PlayerInput inputs;
     private InputAction continueAction;
@@ -37,19 +34,17 @@ public class DialogueController : MonoBehaviour
     [SerializeField]
     private GameObject buttonPrefab;
 
-    private bool FinishedRevealing => visibleCharacters >= CurrentText.Length;
+    [SerializeField]
+    private Message lastMessage;
+
     private void Start()
     {
         inputs = PlayerController.instance.GetComponent<PlayerInput>();
         continueAction = inputs.actions["Next"];
-
-        visibleCharacters = 0;
-        revealTimer = 0;
     }
 
     private void OnEnable()
     {
-        visibleCharacters = 0;
         if (Thread.story.canContinue)
         {
             Continue();
@@ -64,20 +59,14 @@ public class DialogueController : MonoBehaviour
     {
         if (Thread != null)
         {
-            revealTimer += Time.deltaTime;
-
-            if (revealTimer > (1 / revealSpeed))
-            {
-                RevealCharacter();
-                revealTimer = 0;
-            }
+            
             if (Thread.story.canContinue)
             {
                 if (continueAction.triggered)
                 {
-                    if (!FinishedRevealing)
+                    if (!lastMessage.FinishedRevealing)
                     {
-                        RevealAll();
+                        lastMessage.RevealAll();
                     }
                     else
                     {
@@ -97,9 +86,9 @@ public class DialogueController : MonoBehaviour
                 {
                     if (continueAction.triggered)
                     {
-                        if (!FinishedRevealing)
+                        if (!lastMessage.FinishedRevealing)
                         {
-                            RevealAll();
+                            lastMessage.RevealAll();
                         }
                         else
                         {
@@ -154,7 +143,8 @@ public class DialogueController : MonoBehaviour
     private void Continue()
     {
         Thread.story.Continue();
-        visibleCharacters = 0;
+        lastMessage = Instantiate(messagePrefab).GetComponent<Message>();
+        lastMessage.SetText(Thread.story.currentText);
     }
 
     public void MakeChoice(int index)
@@ -165,27 +155,5 @@ public class DialogueController : MonoBehaviour
         //Thread.CheckTags();
         DestoryChoices();
 
-    }
-
-    private void RevealAll()
-    {
-        visibleCharacters = CurrentText.Length;
-        dialogue.text = CurrentText;
-    }
-
-    private void RevealCharacter()
-    {
-        if (FinishedRevealing)
-        {
-            return;
-        }
-
-        dialogue.text = CurrentText.Substring(0, ++visibleCharacters);
-
-        if (dialogue.text[dialogue.text.Length - 1] != ' ')
-        {
-            //soundEffects.pitch = 0.3f + Random.Range(0.95f, 1.05f);
-            //soundEffects.PlayOneShot(speak);
-        }
     }
 }

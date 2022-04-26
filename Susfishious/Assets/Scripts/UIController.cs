@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         inputs = GameObject.Find("Player").GetComponent<PlayerInput>();
-        
+        Character.startDialogue += StartDialogue;
     }
 
     // Update is called once per frame
@@ -38,8 +38,9 @@ public class UIController : MonoBehaviour
         return false;
     }
 
-    public void ActivateDialogueUI()
+    public void StartDialogue(Thread t)
     {
         dialogueUI.SetActive(true);
+        dialogueUI.GetComponent<DialogueController>().currentThread = 
     }
 }
