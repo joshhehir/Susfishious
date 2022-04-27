@@ -9,10 +9,10 @@ using TMPro;
 public class DialogueController : MonoBehaviour
 {
     [SerializeField]
-    public Thread currentThread;
+    public Character currentCharacter;
 
-    private string CurrentText => currentThread.story.currentText;
-    private Thread Thread => currentThread;
+    private string CurrentText => currentCharacter.CurrentThread.story.currentText;
+    private Thread Thread => currentCharacter.CurrentThread;
     [SerializeField]
     private GameObject messagePrefab;
     [SerializeField]
@@ -32,7 +32,7 @@ public class DialogueController : MonoBehaviour
     private Transform buttonContainer;
 
     [SerializeField]
-    private List<GameObject> buttons;
+    private List<GameObject> responses;
     [SerializeField]
     private GameObject buttonPrefab;
 
@@ -45,10 +45,28 @@ public class DialogueController : MonoBehaviour
         continueAction = inputs.actions["Next"];
     }
 
-    public void Resume(Thread t)
+    public void Resume(Character c)
     {
-        if (t != null) currentThread = t;
-        
+        if (c != null) currentCharacter = c;
+
+        foreach (Message m in container.GetComponentsInChildren<Message>())
+        {
+            Destroy(m.gameObject);
+        }
+        var dialogueEntries = currentCharacter.LoadConversation();
+
+        foreach (DialogueEntry d in dialogueEntries)
+        {
+            if (d.isResponse)
+            {
+                CreateResponse(d.text);
+            }
+            else
+            {
+                CreateMessage(d.text);
+            }
+        }
+
         if (Thread.story.canContinue)
         {
             Continue();
@@ -118,37 +136,49 @@ public class DialogueController : MonoBehaviour
         
         foreach (Choice c in choices)
         {
-            GameObject button = Instantiate(buttonPrefab, container.transform);
-            buttons.Add(button.GetComponentInChildren<DialogueChoice>().gameObject);
-            button.transform.localScale = new Vector3(1, 1, 1);
-            button.GetComponentInChildren<TMP_Text>().text = c.text;
+            CreateResponse(c.text);
         }
     }
 
     public void ChoiceMadeByButton(GameObject g)
     {
-        foreach (GameObject gameObject in buttons)
+        foreach (GameObject gameObject in responses)
         {
             if (gameObject.GetComponentInChildren<DialogueChoice>().gameObject == g)
             {
-                MakeChoice(buttons.IndexOf(gameObject));
+                MakeChoice(responses.IndexOf(gameObject));
             }
         }
     }
 
     public void DestoryChoices(int index)
     {
-        for (int i = 0; i < buttons.Count; i++)
+        Debug.Log(index + " : " + responses.Count);
+        for (int i = 0; i < responses.Count; i++)
         {
-            if (i != index) Destroy(buttons[i]);
+            if (i != index) Destroy(responses[i].gameObject);
         }
     }
 
     private void Continue()
     {
         Thread.story.Continue();
+        CreateMessage(Thread.story.currentText);
+    }
+
+    private void CreateMessage(string text)
+    {
         lastMessage = Instantiate(messagePrefab, container.transform).GetComponent<Message>();
-        lastMessage.SetText(Thread.story.currentText);
+        lastMessage.SetText(text);
+    }
+
+    private void CreateResponse(string text)
+    {
+        GameObject button = Instantiate(buttonPrefab, container.transform);
+        button.GetComponent<Message>().SetText(text);
+        responses.Add(button.gameObject);
+        button.transform.localScale = new Vector3(1, 1, 1);
+        button.GetComponentInChildren<TMP_Text>().text = text;
     }
 
     public void MakeChoice(int index)
@@ -162,6 +192,6 @@ public class DialogueController : MonoBehaviour
 
     private void OnDisable()
     {
-        SaveConversation();
+        currentCharacter.SaveConversation(transform);
     }
 }

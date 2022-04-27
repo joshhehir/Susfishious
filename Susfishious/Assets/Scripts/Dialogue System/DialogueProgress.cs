@@ -4,6 +4,7 @@ using UnityEngine;
 using Ink.Runtime;
 using System.Linq;
 
+[System.Serializable]
 public struct DialogueEntry
 {
     public string text;
@@ -17,7 +18,9 @@ public class DialogueProgress : ScriptableObject
     [SerializeField]
     private List<string> threadStates;
     [SerializeField]
-    private List<DialogueEntry> conversationLog;
+    private List<DialogueEntry> conversationLog = new List<DialogueEntry>();
+
+    public List<DialogueEntry> ConversationLog => conversationLog;
 
     public void LoadProgress(List<Thread> threads)
     {
@@ -27,17 +30,23 @@ public class DialogueProgress : ScriptableObject
         }
     }
 
-    public void SaveProgress(List<Thread> threads, Transform content)
+    public void SaveProgress(List<Thread> threads)
     {
         threadStates.Clear();
         foreach (Thread t in threads)
         {
             threadStates.Add(t.GetState());
         }
+        
+    }
+
+    public void SaveConversation(Transform content)
+    {
         conversationLog.Clear();
         foreach (Message m in content.GetComponentsInChildren<Message>())
         {
-            conversationLog.Add(new DialogueEntry() { text = m.CurrentText, isResponse = m.name == "Response" });
+            Debug.Log(m.name);
+            conversationLog.Add(new DialogueEntry() { text = m.CurrentText, isResponse = m.name == "Response Option(Clone)" });
         }
     }
 }

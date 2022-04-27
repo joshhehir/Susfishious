@@ -38,9 +38,9 @@ public class UIController : MonoBehaviour
         return false;
     }
 
-    public void StartDialogue(Thread t)
+    public void StartDialogue(Character c)
     {
         dialogueUI.SetActive(true);
-        dialogueUI.GetComponent<DialogueController>().Resume(t);
+        dialogueUI.GetComponent<DialogueController>().Resume(c);
     }
 }
