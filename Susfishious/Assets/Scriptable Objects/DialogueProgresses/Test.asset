@@ -12,9 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1c7a1921b4ced48bb70152f437b825, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  threadProgressList:
-  - name: Thread
-    knot: main
-    stitch: 
-    eventProgress: 0
-    priority: 1
+  threadStates: []

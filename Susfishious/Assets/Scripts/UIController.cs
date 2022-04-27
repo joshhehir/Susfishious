@@ -41,6 +41,6 @@ public class UIController : MonoBehaviour
     public void StartDialogue(Thread t)
     {
         dialogueUI.SetActive(true);
-        dialogueUI.GetComponent<DialogueController>().currentThread = 
+        dialogueUI.GetComponent<DialogueController>().Resume(t);
     }
 }

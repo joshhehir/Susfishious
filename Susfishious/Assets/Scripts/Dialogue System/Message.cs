@@ -9,7 +9,7 @@ public class Message : MonoBehaviour
     [SerializeField]
     private TMP_Text content;
     [SerializeField]
-    private string CurrentText;
+    public string CurrentText;
     [SerializeField]
     private RectTransform box;
 
@@ -66,7 +66,7 @@ public class Message : MonoBehaviour
         }
 
         content.text = CurrentText.Substring(0, ++visibleCharacters);
-        box.sizeDelta = new Vector2(box.sizeDelta.x, CurrentText.Length);
+        box.sizeDelta = new Vector2(20+CurrentText.Length*8, box.sizeDelta.y);
         if (content.text[content.text.Length - 1] != ' ')
         {
             //soundEffects.pitch = 0.3f + Random.Range(0.95f, 1.05f);

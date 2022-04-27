@@ -254,7 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   content: {fileID: 3655404560778514041}
   CurrentText: 
-  box: {fileID: 3936724388728857929}
+  box: {fileID: 453762855549214137}
   speak: {fileID: 0}
 --- !u!1 &8783091377744465400
 GameObject:

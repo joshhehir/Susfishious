@@ -15,6 +15,8 @@ public class DialogueController : MonoBehaviour
     private Thread Thread => currentThread;
     [SerializeField]
     private GameObject messagePrefab;
+    [SerializeField]
+    private GameObject container;
 
     [SerializeField]
     private TextMeshProUGUI dialogue;
@@ -43,8 +45,10 @@ public class DialogueController : MonoBehaviour
         continueAction = inputs.actions["Next"];
     }
 
-    private void OnEnable()
+    public void Resume(Thread t)
     {
+        if (t != null) currentThread = t;
+        
         if (Thread.story.canContinue)
         {
             Continue();
@@ -55,6 +59,7 @@ public class DialogueController : MonoBehaviour
             GenerateChoices();
         }
     }
+
     private void Update()
     {
         if (Thread != null)
@@ -113,9 +118,8 @@ public class DialogueController : MonoBehaviour
         
         foreach (Choice c in choices)
         {
-            GameObject button = Instantiate(buttonPrefab);
-            buttons.Add(button);
-            button.transform.SetParent(buttonContainer);
+            GameObject button = Instantiate(buttonPrefab, container.transform);
+            buttons.Add(button.GetComponentInChildren<DialogueChoice>().gameObject);
             button.transform.localScale = new Vector3(1, 1, 1);
             button.GetComponentInChildren<TMP_Text>().text = c.text;
         }
@@ -125,25 +129,25 @@ public class DialogueController : MonoBehaviour
     {
         foreach (GameObject gameObject in buttons)
         {
-            if (gameObject == g)
+            if (gameObject.GetComponentInChildren<DialogueChoice>().gameObject == g)
             {
                 MakeChoice(buttons.IndexOf(gameObject));
             }
         }
     }
 
-    public void DestoryChoices()
+    public void DestoryChoices(int index)
     {
         for (int i = 0; i < buttons.Count; i++)
         {
-            Destroy(buttons[i]);
+            if (i != index) Destroy(buttons[i]);
         }
     }
 
     private void Continue()
     {
         Thread.story.Continue();
-        lastMessage = Instantiate(messagePrefab).GetComponent<Message>();
+        lastMessage = Instantiate(messagePrefab, container.transform).GetComponent<Message>();
         lastMessage.SetText(Thread.story.currentText);
     }
 
@@ -153,7 +157,11 @@ public class DialogueController : MonoBehaviour
         Thread.story.ChooseChoiceIndex(index);
         Continue();
         //Thread.CheckTags();
-        DestoryChoices();
+        DestoryChoices(index);
+    }
 
+    private void OnDisable()
+    {
+        SaveConversation();
     }
 }
