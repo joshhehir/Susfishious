@@ -22,13 +22,13 @@ public class ThirdPersonController : MonoBehaviour
 
     [SerializeField]
     private Camera playerCamera;
-    private Animator animator;
+    //private Animator animator;
 
     private void Awake()
     {
         rb = this.GetComponent<Rigidbody>();
         playerActionsAsset = new ThirdPersonActionsAsset();
-        animator = this.GetComponent<Animator>();
+        //animator = this.GetComponent<Animator>();
     }
 
     private void OnEnable()
