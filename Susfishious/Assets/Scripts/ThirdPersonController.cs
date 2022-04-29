@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class ThirdPersonController : MonoBehaviour
 {
+    public static ThirdPersonController instance;
+
     //input fields
     private ThirdPersonActionsAsset playerActionsAsset;
     private InputAction move;
@@ -33,6 +35,14 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Awake()
     {
+        if (!instance)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         rb = this.GetComponent<Rigidbody>();
         playerActionsAsset = new ThirdPersonActionsAsset();
         animator = this.GetComponent<Animator>();
@@ -42,6 +52,7 @@ public class ThirdPersonController : MonoBehaviour
     void Update()
     {
         animator.SetFloat("speed", rb.velocity.magnitude / speed);
+        stepClimb();
     }
 
     private void OnEnable()
@@ -59,7 +70,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        stepClimb();
+        //stepClimb();
         forceDirection += move.ReadValue<Vector2>().x * GetCameraRight(playerCamera) * movementForce;
         forceDirection += move.ReadValue<Vector2>().y * GetCameraForward(playerCamera) * movementForce;
 
@@ -121,7 +132,7 @@ public class ThirdPersonController : MonoBehaviour
 
     void stepClimb()
     {
-         RaycastHit hitLower;
+        RaycastHit hitLower;
         if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
         {
             RaycastHit hitUpper;
@@ -130,27 +141,34 @@ public class ThirdPersonController : MonoBehaviour
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }
-
+        
         RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f,0,1), out hitLower45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.right), out hitLower45, 0.1f))
         {
-
             RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f,0,1), out hitUpper45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.right), out hitUpper45, 0.2f))
             {
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }
 
         RaycastHit hitLowerMinus45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f,0,1), out hitLowerMinus45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.left), out hitLowerMinus45, 0.1f))
         {
-
             RaycastHit hitUpperMinus45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f,0,1), out hitUpperMinus45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.left), out hitUpperMinus45, 0.2f))
             {
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+                
             }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        // Draws a 5 unit long red line in front of the object
+        Gizmos.color = Color.red;
+        Vector3 direction = transform.TransformDirection(Vector3.forward) * 5;
+        Gizmos.DrawRay(stepRayLower.transform.position, direction);
     }
 }

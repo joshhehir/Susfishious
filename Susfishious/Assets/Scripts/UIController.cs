@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inputs = GameObject.Find("Player").GetComponent<PlayerInput>();
+        inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
         
     }
 
