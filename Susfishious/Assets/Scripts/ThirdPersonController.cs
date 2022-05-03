@@ -143,23 +143,22 @@ public class ThirdPersonController : MonoBehaviour
         }
         
         RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.right), out hitLower45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f,0,1), out hitLower45, 0.1f))
         {
             RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.right), out hitUpper45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f,0,1), out hitUpper45, 0.2f))
             {
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }
 
         RaycastHit hitLowerMinus45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.left), out hitLowerMinus45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f,0,1), out hitLowerMinus45, 0.1f))
         {
             RaycastHit hitUpperMinus45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.left), out hitUpperMinus45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f,0,1), out hitUpperMinus45, 0.2f))
             {
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
-                
             }
         }
     }
@@ -168,7 +167,17 @@ public class ThirdPersonController : MonoBehaviour
     {
         // Draws a 5 unit long red line in front of the object
         Gizmos.color = Color.red;
-        Vector3 direction = transform.TransformDirection(Vector3.forward) * 5;
-        Gizmos.DrawRay(stepRayLower.transform.position, direction);
+        Vector3 ForwardDirection = transform.TransformDirection(Vector3.forward) * 5;
+        Vector3 RightDirection = transform.TransformDirection(1.5f,0,1) * 5;
+        Vector3 LeftDirection = transform.TransformDirection(-1.5f,0,1) * 5;
+
+        Gizmos.DrawRay(stepRayLower.transform.position, ForwardDirection);
+        Gizmos.DrawRay(stepRayUpper.transform.position, ForwardDirection);
+
+        Gizmos.DrawRay(stepRayLower.transform.position, RightDirection);
+        Gizmos.DrawRay(stepRayUpper.transform.position, RightDirection);
+
+        Gizmos.DrawRay(stepRayLower.transform.position, LeftDirection);
+        Gizmos.DrawRay(stepRayUpper.transform.position, LeftDirection);
     }
 }
