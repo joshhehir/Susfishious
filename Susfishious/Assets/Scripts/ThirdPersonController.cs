@@ -51,6 +51,16 @@ public class ThirdPersonController : MonoBehaviour
         animator = this.GetComponent<Animator>();
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
+    
+     private void OnEnable()
+    {
+        jump.started += DoJump;
+    }
+
+    private void OnDisable()
+    {
+        jump.started -= DoJump;
+    }
 
     void Update()
     {
@@ -75,7 +85,7 @@ public class ThirdPersonController : MonoBehaviour
         if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
 
-        if (jump.triggered) DoJump();
+        //if (jump.triggered) DoJump();
 
         LookAt();
     }
@@ -105,7 +115,7 @@ public class ThirdPersonController : MonoBehaviour
         return right.normalized;
     }
 
-    private void DoJump()
+    private void DoJump(InputAction.CallbackContext obj)
     {
         if(IsGrounded())
         {
