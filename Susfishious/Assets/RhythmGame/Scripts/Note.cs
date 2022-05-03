@@ -44,8 +44,8 @@ public class Note : MonoBehaviour
         //myAudioSource = Manager.GetComponent<RhythmAudioManager>();
         myManager = Manager.GetComponent<RhythmManager>();
 
-        ActionA = PlayerController.instance.input.actions["ActionA"];
-        ActionB = PlayerController.instance.input.actions["ActionB"];
+        ActionA = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["ActionA"];
+        ActionB = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["ActionB"];
 
         if (fTempo != 0)
         {

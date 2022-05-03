@@ -22,7 +22,7 @@ public class RhythmManager : MonoBehaviour
     void Start()
     {
         myNotes = GameObject.FindGameObjectsWithTag("Note");
-        start = PlayerController.instance.input.actions["Start"];
+        start = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["Start"];
     }
 
     void Awake()
