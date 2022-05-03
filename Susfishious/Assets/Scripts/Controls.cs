@@ -64,7 +64,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Start"",
+                    ""name"": ""Fish"",
                     ""type"": ""Button"",
                     ""id"": ""089e858a-048d-4548-9e31-2a2dabf6a920"",
                     ""expectedControlType"": ""Button"",
@@ -196,7 +196,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Start"",
+                    ""action"": ""Fish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -272,7 +272,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
         m_Character_ActionA = m_Character.FindAction("ActionA", throwIfNotFound: true);
         m_Character_ActionB = m_Character.FindAction("ActionB", throwIfNotFound: true);
-        m_Character_Start = m_Character.FindAction("Start", throwIfNotFound: true);
+        m_Character_Fish = m_Character.FindAction("Fish", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
         m_Character_Pause = m_Character.FindAction("Pause", throwIfNotFound: true);
@@ -342,7 +342,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Move;
     private readonly InputAction m_Character_ActionA;
     private readonly InputAction m_Character_ActionB;
-    private readonly InputAction m_Character_Start;
+    private readonly InputAction m_Character_Fish;
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Look;
     private readonly InputAction m_Character_Pause;
@@ -354,7 +354,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Character_Move;
         public InputAction @ActionA => m_Wrapper.m_Character_ActionA;
         public InputAction @ActionB => m_Wrapper.m_Character_ActionB;
-        public InputAction @Start => m_Wrapper.m_Character_Start;
+        public InputAction @Fish => m_Wrapper.m_Character_Fish;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Look => m_Wrapper.m_Character_Look;
         public InputAction @Pause => m_Wrapper.m_Character_Pause;
@@ -379,9 +379,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ActionB.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
                 @ActionB.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
                 @ActionB.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
-                @Start.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
-                @Start.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
-                @Start.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Fish.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFish;
+                @Fish.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFish;
+                @Fish.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFish;
                 @Jump.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
@@ -407,9 +407,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ActionB.started += instance.OnActionB;
                 @ActionB.performed += instance.OnActionB;
                 @ActionB.canceled += instance.OnActionB;
-                @Start.started += instance.OnStart;
-                @Start.performed += instance.OnStart;
-                @Start.canceled += instance.OnStart;
+                @Fish.started += instance.OnFish;
+                @Fish.performed += instance.OnFish;
+                @Fish.canceled += instance.OnFish;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -462,7 +462,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnActionA(InputAction.CallbackContext context);
         void OnActionB(InputAction.CallbackContext context);
-        void OnStart(InputAction.CallbackContext context);
+        void OnFish(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);

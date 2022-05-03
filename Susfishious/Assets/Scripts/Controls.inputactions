@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Start",
+                    "name": "Fish",
                     "type": "Button",
                     "id": "089e858a-048d-4548-9e31-2a2dabf6a920",
                     "expectedControlType": "Button",
@@ -174,7 +174,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Start",
+                    "action": "Fish",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
