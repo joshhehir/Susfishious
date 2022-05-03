@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2ee2e45873ce504a88eca3f11d6d21b, type: 3}
-  m_Name: FishA
+  m_Name: FishD
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  name: Largemouth Bass
-  description: Largemouth Bass, an aquatic predator that feeds day and night, is
-    a common ingredient for many fish dishes.
-  itemMutation: No mutation
+  name: Brittle Key Fish
+  description: The mysteriously difficult to find fish scattered within the depths
+    of the lakes. Are Wahoo fishes that had been mutated with keys that had descended
+    into the lakes.
+  itemMutation: Key

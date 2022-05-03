@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2ee2e45873ce504a88eca3f11d6d21b, type: 3}
-  m_Name: FishA
+  m_Name: FishG
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  name: Largemouth Bass
-  description: Largemouth Bass, an aquatic predator that feeds day and night, is
-    a common ingredient for many fish dishes.
-  itemMutation: No mutation
+  name: Red Herring
+  description: A Herring that had turned scarlet red due to pollution. They tend
+    to linger in armies, but are usually found everywhere in the large lake.
+  itemMutation: Coloured red
