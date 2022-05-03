@@ -29,7 +29,6 @@ public class InteractionManager : MonoBehaviour
         if (interactions.Count == 1)
         {
             selectedInteraction = interactions[0];
-            Debug.Log("Interaction");
         }
         else
         {

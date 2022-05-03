@@ -12,14 +12,14 @@ public class ChangeInputMapOnEnable : MonoBehaviour
 
     private void Start()
     {
-        inputs = GameObject.Find("Player").GetComponent<PlayerInput>();
+        inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
     }
 
     private void OnEnable()
     {
         if (inputs == null)
         {
-            inputs = GameObject.Find("Player").GetComponent<PlayerInput>();
+            inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
         }
         inputs.SwitchCurrentActionMap(InputMapOnEnable);
     }

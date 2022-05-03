@@ -40,7 +40,7 @@ public class DialogueController : MonoBehaviour
     private bool FinishedRevealing => visibleCharacters >= CurrentText.Length;
     private void Start()
     {
-        inputs = PlayerController.instance.GetComponent<PlayerInput>();
+        inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
         continueAction = inputs.actions["Next"];
 
         visibleCharacters = 0;
