@@ -24,7 +24,7 @@ public partial class @ThirdPersonActionsAsset : IInputActionCollection2, IDispos
     ""name"": ""ThirdPersonActionsAsset"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""Player_character"",
             ""id"": ""39c69f03-8f2b-47d6-8ee4-95267874ddec"",
             ""actions"": [
                 {
@@ -218,15 +218,15 @@ public partial class @ThirdPersonActionsAsset : IInputActionCollection2, IDispos
     ],
     ""controlSchemes"": []
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_ActionA = m_Player.FindAction("ActionA", throwIfNotFound: true);
-        m_Player_ActionB = m_Player.FindAction("ActionB", throwIfNotFound: true);
-        m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
+        // Player_character
+        m_Player_character = asset.FindActionMap("Player_character", throwIfNotFound: true);
+        m_Player_character_Move = m_Player_character.FindAction("Move", throwIfNotFound: true);
+        m_Player_character_Jump = m_Player_character.FindAction("Jump", throwIfNotFound: true);
+        m_Player_character_Look = m_Player_character.FindAction("Look", throwIfNotFound: true);
+        m_Player_character_Interact = m_Player_character.FindAction("Interact", throwIfNotFound: true);
+        m_Player_character_ActionA = m_Player_character.FindAction("ActionA", throwIfNotFound: true);
+        m_Player_character_ActionB = m_Player_character.FindAction("ActionB", throwIfNotFound: true);
+        m_Player_character_Start = m_Player_character.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -283,59 +283,59 @@ public partial class @ThirdPersonActionsAsset : IInputActionCollection2, IDispos
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_ActionA;
-    private readonly InputAction m_Player_ActionB;
-    private readonly InputAction m_Player_Start;
-    public struct PlayerActions
+    // Player_character
+    private readonly InputActionMap m_Player_character;
+    private IPlayer_characterActions m_Player_characterActionsCallbackInterface;
+    private readonly InputAction m_Player_character_Move;
+    private readonly InputAction m_Player_character_Jump;
+    private readonly InputAction m_Player_character_Look;
+    private readonly InputAction m_Player_character_Interact;
+    private readonly InputAction m_Player_character_ActionA;
+    private readonly InputAction m_Player_character_ActionB;
+    private readonly InputAction m_Player_character_Start;
+    public struct Player_characterActions
     {
         private @ThirdPersonActionsAsset m_Wrapper;
-        public PlayerActions(@ThirdPersonActionsAsset wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Look => m_Wrapper.m_Player_Look;
-        public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @ActionA => m_Wrapper.m_Player_ActionA;
-        public InputAction @ActionB => m_Wrapper.m_Player_ActionB;
-        public InputAction @Start => m_Wrapper.m_Player_Start;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public Player_characterActions(@ThirdPersonActionsAsset wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_character_Move;
+        public InputAction @Jump => m_Wrapper.m_Player_character_Jump;
+        public InputAction @Look => m_Wrapper.m_Player_character_Look;
+        public InputAction @Interact => m_Wrapper.m_Player_character_Interact;
+        public InputAction @ActionA => m_Wrapper.m_Player_character_ActionA;
+        public InputAction @ActionB => m_Wrapper.m_Player_character_ActionB;
+        public InputAction @Start => m_Wrapper.m_Player_character_Start;
+        public InputActionMap Get() { return m_Wrapper.m_Player_character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(Player_characterActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer_characterActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_Player_characterActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @ActionA.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionA;
-                @ActionA.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionA;
-                @ActionA.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionA;
-                @ActionB.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionB;
-                @ActionB.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionB;
-                @ActionB.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnActionB;
-                @Start.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
-                @Start.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
-                @Start.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
+                @Move.started -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnMove;
+                @Jump.started -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnJump;
+                @Look.started -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnLook;
+                @Interact.started -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnInteract;
+                @ActionA.started -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnActionA;
+                @ActionA.performed -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnActionA;
+                @ActionA.canceled -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnActionA;
+                @ActionB.started -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnActionB;
+                @ActionB.performed -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnActionB;
+                @ActionB.canceled -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnActionB;
+                @Start.started -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_Player_characterActionsCallbackInterface.OnStart;
             }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_Player_characterActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
@@ -362,8 +362,8 @@ public partial class @ThirdPersonActionsAsset : IInputActionCollection2, IDispos
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
-    public interface IPlayerActions
+    public Player_characterActions @Player_character => new Player_characterActions(this);
+    public interface IPlayer_characterActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

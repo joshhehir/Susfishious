@@ -2,7 +2,7 @@
     "name": "ThirdPersonActionsAsset",
     "maps": [
         {
-            "name": "Player",
+            "name": "Player_character",
             "id": "39c69f03-8f2b-47d6-8ee4-95267874ddec",
             "actions": [
                 {
