@@ -9,11 +9,14 @@ using TMPro;
 public class DialogueController : MonoBehaviour
 {
     [SerializeField]
-    private DialogueHolder currentDialogue;
-    public float revealSpeed = 14; // characters per second
+    public Character currentCharacter;
 
-    private string CurrentText => currentDialogue.thread.story.currentText;
-    private Thread Thread => currentDialogue.thread;
+    private string CurrentText => currentCharacter.CurrentThread.story.currentText;
+    private Thread Thread => currentCharacter.CurrentThread;
+    [SerializeField]
+    private GameObject messagePrefab;
+    [SerializeField]
+    private GameObject container;
 
     [SerializeField]
     private TextMeshProUGUI dialogue;
@@ -21,10 +24,6 @@ public class DialogueController : MonoBehaviour
     private Image portrait;
     [SerializeField]
     private AudioSource soundEffects;
-    [SerializeField]
-    private AudioClip speak;
-    private int visibleCharacters = 0;
-    private float revealTimer = 0;
 
     private PlayerInput inputs;
     private InputAction continueAction;
@@ -33,23 +32,41 @@ public class DialogueController : MonoBehaviour
     private Transform buttonContainer;
 
     [SerializeField]
-    private List<GameObject> buttons;
+    private List<GameObject> responses;
     [SerializeField]
     private GameObject buttonPrefab;
 
-    private bool FinishedRevealing => visibleCharacters >= CurrentText.Length;
+    [SerializeField]
+    private Message lastMessage;
+
     private void Start()
     {
         inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
         continueAction = inputs.actions["Next"];
-
-        visibleCharacters = 0;
-        revealTimer = 0;
     }
 
-    private void OnEnable()
+    public void Resume(Character c)
     {
-        visibleCharacters = 0;
+        if (c != null) currentCharacter = c;
+
+        foreach (Message m in container.GetComponentsInChildren<Message>())
+        {
+            Destroy(m.gameObject);
+        }
+        var dialogueEntries = currentCharacter.LoadConversation();
+
+        foreach (DialogueEntry d in dialogueEntries)
+        {
+            if (d.isResponse)
+            {
+                CreateResponse(d.text);
+            }
+            else
+            {
+                CreateMessage(d.text);
+            }
+        }
+
         if (Thread.story.canContinue)
         {
             Continue();
@@ -60,24 +77,19 @@ public class DialogueController : MonoBehaviour
             GenerateChoices();
         }
     }
+
     private void Update()
     {
         if (Thread != null)
         {
-            revealTimer += Time.deltaTime;
-
-            if (revealTimer > (1 / revealSpeed))
-            {
-                RevealCharacter();
-                revealTimer = 0;
-            }
+            
             if (Thread.story.canContinue)
             {
                 if (continueAction.triggered)
                 {
-                    if (!FinishedRevealing)
+                    if (!lastMessage.FinishedRevealing)
                     {
-                        RevealAll();
+                        lastMessage.RevealAll();
                     }
                     else
                     {
@@ -97,9 +109,9 @@ public class DialogueController : MonoBehaviour
                 {
                     if (continueAction.triggered)
                     {
-                        if (!FinishedRevealing)
+                        if (!lastMessage.FinishedRevealing)
                         {
-                            RevealAll();
+                            lastMessage.RevealAll();
                         }
                         else
                         {
@@ -124,37 +136,49 @@ public class DialogueController : MonoBehaviour
         
         foreach (Choice c in choices)
         {
-            GameObject button = Instantiate(buttonPrefab);
-            buttons.Add(button);
-            button.transform.SetParent(buttonContainer);
-            button.transform.localScale = new Vector3(1, 1, 1);
-            button.GetComponentInChildren<TMP_Text>().text = c.text;
+            CreateResponse(c.text);
         }
     }
 
     public void ChoiceMadeByButton(GameObject g)
     {
-        foreach (GameObject gameObject in buttons)
+        foreach (GameObject gameObject in responses)
         {
-            if (gameObject == g)
+            if (gameObject.GetComponentInChildren<DialogueChoice>().gameObject == g)
             {
-                MakeChoice(buttons.IndexOf(gameObject));
+                MakeChoice(responses.IndexOf(gameObject));
             }
         }
     }
 
-    public void DestoryChoices()
+    public void DestoryChoices(int index)
     {
-        for (int i = 0; i < buttons.Count; i++)
+        Debug.Log(index + " : " + responses.Count);
+        for (int i = 0; i < responses.Count; i++)
         {
-            Destroy(buttons[i]);
+            if (i != index) Destroy(responses[i].gameObject);
         }
     }
 
     private void Continue()
     {
         Thread.story.Continue();
-        visibleCharacters = 0;
+        CreateMessage(Thread.story.currentText);
+    }
+
+    private void CreateMessage(string text)
+    {
+        lastMessage = Instantiate(messagePrefab, container.transform).GetComponent<Message>();
+        lastMessage.SetText(text);
+    }
+
+    private void CreateResponse(string text)
+    {
+        GameObject button = Instantiate(buttonPrefab, container.transform);
+        button.GetComponent<Message>().SetText(text);
+        responses.Add(button.gameObject);
+        button.transform.localScale = new Vector3(1, 1, 1);
+        button.GetComponentInChildren<TMP_Text>().text = text;
     }
 
     public void MakeChoice(int index)
@@ -163,29 +187,11 @@ public class DialogueController : MonoBehaviour
         Thread.story.ChooseChoiceIndex(index);
         Continue();
         //Thread.CheckTags();
-        DestoryChoices();
-
+        DestoryChoices(index);
     }
 
-    private void RevealAll()
+    private void OnDisable()
     {
-        visibleCharacters = CurrentText.Length;
-        dialogue.text = CurrentText;
-    }
-
-    private void RevealCharacter()
-    {
-        if (FinishedRevealing)
-        {
-            return;
-        }
-
-        dialogue.text = CurrentText.Substring(0, ++visibleCharacters);
-
-        if (dialogue.text[dialogue.text.Length - 1] != ' ')
-        {
-            //soundEffects.pitch = 0.3f + Random.Range(0.95f, 1.05f);
-            //soundEffects.PlayOneShot(speak);
-        }
+        currentCharacter.SaveConversation(transform);
     }
 }

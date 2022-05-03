@@ -15,8 +15,8 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Character.startDialogue += StartDialogue;
         inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
-        
     }
 
     // Update is called once per frame
@@ -38,8 +38,9 @@ public class UIController : MonoBehaviour
         return false;
     }
 
-    public void ActivateDialogueUI()
+    public void StartDialogue(Character c)
     {
         dialogueUI.SetActive(true);
+        dialogueUI.GetComponent<DialogueController>().Resume(c);
     }
 }

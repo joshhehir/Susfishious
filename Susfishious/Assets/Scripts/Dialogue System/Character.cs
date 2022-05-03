@@ -12,13 +12,12 @@ public struct EventConnectors
 
 public class Character : MonoBehaviour, IInteract
 {
-    [SerializeField]
-    private GameEvent enterDialogue;
-    [SerializeField]
-    private DialogueHolder currentDialogue;
+    public delegate void characterPass(Character c);
+    public static event characterPass startDialogue;
 
-    private DialoguePool dialoguePool;
+    public DialoguePool dialoguePool;
 
+    public Thread CurrentThread => dialoguePool.currentThread;
     private void Start()
     {
         dialoguePool = GetComponent<DialoguePool>();
@@ -41,8 +40,8 @@ public class Character : MonoBehaviour, IInteract
 
     public void Interact()
     {
-        currentDialogue.thread = dialoguePool.GetStory();
-        if (currentDialogue.thread != null) enterDialogue.Raise();
+        dialoguePool.GetStory();
+        startDialogue.Invoke(this);
     }
 
     public void AddToPriority(Thread t)
@@ -50,7 +49,13 @@ public class Character : MonoBehaviour, IInteract
         dialoguePool.AddPriority(t);
     }
 
-    
+    public void SaveConversation(Transform t)
+    {
+        dialoguePool.SaveConversation(t);
+    }
 
-    
+    public List<DialogueEntry> LoadConversation()
+    {
+        return dialoguePool.DialogueEntries;
+    }
 }

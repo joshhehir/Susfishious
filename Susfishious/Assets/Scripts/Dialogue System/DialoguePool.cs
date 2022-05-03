@@ -12,16 +12,22 @@ public class DialoguePool : MonoBehaviour
     [SerializeField]
     private List<Thread> priority = new List<Thread>();
     [SerializeField]
-    private Thread currentThread;
+    public Thread currentThread;
 
     [SerializeField]
     private DialogueProgress progress;
+    public List<DialogueEntry> DialogueEntries => progress.ConversationLog;
 
     public Thread First => available[0];
 
     public void SaveThreadProgress()
     {
         progress.SaveProgress(threads);
+    }
+
+    public void SaveConversation(Transform t)
+    {
+        progress.SaveConversation(t);
     }
 
     public void LoadProgress()

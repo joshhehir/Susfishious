@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1c4739f604872e478f213e4359d7dde, type: 3}
-  m_Name: CurrentDialogue
+  m_Script: {fileID: 11500000, guid: 134a0d79cabcc84459bc4d067aec4a60, type: 3}
+  m_Name: GlobalSettings
   m_EditorClassIdentifier: 
-  thread: {fileID: 0}
+  font: {fileID: 11400000, guid: 653f2cb867cb28a4aa475049ca0c8d47, type: 2}
