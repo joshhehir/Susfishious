@@ -9,8 +9,8 @@ public class ThirdPersonController : MonoBehaviour
     public static ThirdPersonController instance;
 
     //input fields
-    private ThirdPersonActionsAsset playerActionsAsset;
     private InputAction move;
+    private InputAction jump;
 
     //movement fields
     private Rigidbody rb;
@@ -44,7 +44,10 @@ public class ThirdPersonController : MonoBehaviour
             Destroy(gameObject);
         }
         rb = this.GetComponent<Rigidbody>();
-        playerActionsAsset = new ThirdPersonActionsAsset();
+        var input = GetComponent<PlayerInput>();
+        move = input.actions["Move"];
+        jump = input.actions["Jump"];
+
         animator = this.GetComponent<Animator>();
         stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
     }
@@ -53,19 +56,6 @@ public class ThirdPersonController : MonoBehaviour
     {
         animator.SetFloat("speed", rb.velocity.magnitude / speed);
         stepClimb();
-    }
-
-    private void OnEnable()
-    {
-        playerActionsAsset.Player.Jump.started += DoJump;
-        move = playerActionsAsset.Player.Move;
-        playerActionsAsset.Player.Enable();
-    }
-
-    private void OnDisable()
-    {
-        playerActionsAsset.Player.Jump.started -= DoJump;
-        playerActionsAsset.Player.Disable();
     }
 
     private void FixedUpdate()
@@ -84,6 +74,8 @@ public class ThirdPersonController : MonoBehaviour
         horizontalVelocity.y = 0;
         if (horizontalVelocity.sqrMagnitude > maxSpeed * maxSpeed)
             rb.velocity = horizontalVelocity.normalized * maxSpeed + Vector3.up * rb.velocity.y;
+
+        if (jump.triggered) DoJump();
 
         LookAt();
     }
@@ -113,7 +105,7 @@ public class ThirdPersonController : MonoBehaviour
         return right.normalized;
     }
 
-    private void DoJump(InputAction.CallbackContext obj)
+    private void DoJump()
     {
         if(IsGrounded())
         {
@@ -133,30 +125,36 @@ public class ThirdPersonController : MonoBehaviour
     void stepClimb()
     {
         RaycastHit hitLower;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.5f))
         {
+            Debug.Log("hitting bottom", hitLower.collider.gameObject);
             RaycastHit hitUpper;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.5f))
             {
+                Debug.Log("not hitting top", hitLower.collider.gameObject);
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
+            }
+            else
+            {
+                Debug.Log(hitUpper.collider.name);
             }
         }
         
         RaycastHit hitLower45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f,0,1), out hitLower45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(1.5f,0,1), out hitLower45, 0.5f))
         {
             RaycastHit hitUpper45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f,0,1), out hitUpper45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(1.5f,0,1), out hitUpper45, 0.5f))
             {
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
         }
 
         RaycastHit hitLowerMinus45;
-        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f,0,1), out hitLowerMinus45, 0.1f))
+        if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(-1.5f,0,1), out hitLowerMinus45, 0.5f))
         {
             RaycastHit hitUpperMinus45;
-            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f,0,1), out hitUpperMinus45, 0.2f))
+            if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(-1.5f,0,1), out hitUpperMinus45, 0.5f))
             {
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
@@ -167,9 +165,9 @@ public class ThirdPersonController : MonoBehaviour
     {
         // Draws a 5 unit long red line in front of the object
         Gizmos.color = Color.red;
-        Vector3 ForwardDirection = transform.TransformDirection(Vector3.forward) * 5;
-        Vector3 RightDirection = transform.TransformDirection(1.5f,0,1) * 5;
-        Vector3 LeftDirection = transform.TransformDirection(-1.5f,0,1) * 5;
+        Vector3 ForwardDirection = transform.TransformDirection(Vector3.forward) *0.5f;
+        Vector3 RightDirection = transform.TransformDirection(1.5f,0,1) * 0.5f;
+        Vector3 LeftDirection = transform.TransformDirection(-1.5f,0,1) * 0.5f;
 
         Gizmos.DrawRay(stepRayLower.transform.position, ForwardDirection);
         Gizmos.DrawRay(stepRayUpper.transform.position, ForwardDirection);
