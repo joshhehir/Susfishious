@@ -41,7 +41,7 @@ public class DialogueController : MonoBehaviour
 
     private void Start()
     {
-        inputs = PlayerController.instance.GetComponent<PlayerInput>();
+        inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
         continueAction = inputs.actions["Next"];
     }
 

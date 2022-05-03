@@ -14,7 +14,7 @@ public class InteractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        interactAction = PlayerController.instance.GetComponent<PlayerInput>().actions["Interact"];
+        interactAction = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["Interact"];
     }
 
     // Update is called once per frame
