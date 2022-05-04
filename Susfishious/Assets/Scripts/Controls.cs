@@ -98,6 +98,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""68e1f845-ddf7-47d0-a6b9-f40944b00109"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -232,6 +241,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20bb742d-3174-4b50-bd31-4fa3ea80655f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -304,6 +324,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
         m_Character_Pause = m_Character.FindAction("Pause", throwIfNotFound: true);
+        m_Character_Start = m_Character.FindAction("Start", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Next = m_Dialogue.FindAction("Next", throwIfNotFound: true);
@@ -377,6 +398,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Look;
     private readonly InputAction m_Character_Pause;
+    private readonly InputAction m_Character_Start;
     public struct CharacterActions
     {
         private @Controls m_Wrapper;
@@ -389,6 +411,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Look => m_Wrapper.m_Character_Look;
         public InputAction @Pause => m_Wrapper.m_Character_Pause;
+        public InputAction @Start => m_Wrapper.m_Character_Start;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -422,6 +445,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Start.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -450,6 +476,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -530,6 +559,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
     public interface IDialogueActions
     {
