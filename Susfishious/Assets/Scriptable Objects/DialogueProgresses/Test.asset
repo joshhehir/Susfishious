@@ -12,29 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1c7a1921b4ced48bb70152f437b825, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  threadStates:
-  - '{"flows":{"DEFAULT_FLOW":{"callstack":{"threads":[{"callstack":[{"exp":false,"type":0}],"threadIndex":0}],"threadCounter":2},"outputStream":["^
-    ","^cool cool ",{"#":"RESUME: cool"},"\n"],"currentChoices":[]}},"currentFlowName":"DEFAULT_FLOW","variablesState":{},"evalStack":[],"visitCounts":{"":1,"main":1,"main.0.c-0":1,"cool":1},"turnIndices":{},"turnIdx":0,"storySeed":97,"previousRandom":0,"inkSaveVersion":9,"inkFormatVersion":20}'
+  threadStates: []
   conversationLog:
-  - text: 'Yo
+  - text: 'Hi there, I''m Mayor Garth. Welcome to Susfishious!
 
 '
     isResponse: 0
-  - text: 'Yoooo
+  - text: 'You''ve arrived in time for the annual fishing competition!
 
 '
     isResponse: 0
-  - text: 'Yoooooooo
-
-'
-    isResponse: 0
-  - text: 'This is a test
-
-'
-    isResponse: 0
-  - text: alright cool
+  - text: Yeah, that why I'm here, for the competiton.
     isResponse: 1
-  - text: 'cool cool
+  - text: 'Excellent! I''m sure you''ll have a wondeful time here.
 
 '
     isResponse: 0
+  - text: 'Look''s like you''ve been out fishing already. Have you had any luck yet?
+
+'
+    isResponse: 0
+  - text: No luck yet
+    isResponse: 1
+  - text: 'No luck yet? Ah, well.
+
+'
+    isResponse: 0
+  - text: 'There''s still plenty of time left in the day to head back out in the
+      water.
+
+'
+    isResponse: 0
+  - text: 'Or you could ask some of our local fishing experts for some tips.
+
+'
+    isResponse: 0
+  - text: 'Anyway, I hope you enjoy your time here.
+
+'
+    isResponse: 0
+  - text: 'Anyway, I hope you enjoy your time here.
+
+'
+    isResponse: 0
+  - text: That's right...
+    isResponse: 1

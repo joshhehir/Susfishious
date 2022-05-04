@@ -255,6 +255,8 @@ MonoBehaviour:
   content: {fileID: 3655404560778514041}
   CurrentText: 
   box: {fileID: 453762855549214137}
+  heightBox: {fileID: 0}
+  skipTypeEffect: 0
   speak: {fileID: 0}
 --- !u!1 &8783091377744465400
 GameObject:
