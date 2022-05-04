@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1696247809184105920}
   - component: {fileID: 1696247809184105921}
   - component: {fileID: 1696247809184105926}
-  - component: {fileID: 1696247809184105949}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -116,37 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueUI: {fileID: 7199784985127772192}
---- !u!114 &1696247809184105949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696247809184105927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4424d8a84664c2a45a005fcbbc7bc9a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 80d352c3b34db814b9ad6654966a6bcb, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1696247809184105926}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ActivateDialogueUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  ResponseGO:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &1696247809021178132
 PrefabInstance:
   m_ObjectHideFlags: 0

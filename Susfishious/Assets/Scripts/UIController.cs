@@ -37,7 +37,7 @@ public class UIController : MonoBehaviour
         if (dialogueUI.activeInHierarchy == true) return true;
         return false;
     }
-
+    
     public void StartDialogue(Character c)
     {
         dialogueUI.SetActive(true);

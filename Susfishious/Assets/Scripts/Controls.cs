@@ -262,6 +262,34 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Pause"",
+            ""id"": ""9f1619c5-2875-48a3-be1c-0839a2bb4cc3"",
+            ""actions"": [
+                {
+                    ""name"": ""Return "",
+                    ""type"": ""Button"",
+                    ""id"": ""8c0f899e-6afc-4cdd-bb7d-fca3c1dbad8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""360911be-f356-4868-8611-c3e922bcce19"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -279,6 +307,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Next = m_Dialogue.FindAction("Next", throwIfNotFound: true);
+        // Pause
+        m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
+        m_Pause_Return = m_Pause.FindAction("Return ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -456,6 +487,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public DialogueActions @Dialogue => new DialogueActions(this);
+
+    // Pause
+    private readonly InputActionMap m_Pause;
+    private IPauseActions m_PauseActionsCallbackInterface;
+    private readonly InputAction m_Pause_Return;
+    public struct PauseActions
+    {
+        private @Controls m_Wrapper;
+        public PauseActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Return => m_Wrapper.m_Pause_Return;
+        public InputActionMap Get() { return m_Wrapper.m_Pause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseActions instance)
+        {
+            if (m_Wrapper.m_PauseActionsCallbackInterface != null)
+            {
+                @Return.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
+                @Return.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
+                @Return.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
+            }
+            m_Wrapper.m_PauseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Return.started += instance.OnReturn;
+                @Return.performed += instance.OnReturn;
+                @Return.canceled += instance.OnReturn;
+            }
+        }
+    }
+    public PauseActions @Pause => new PauseActions(this);
     public interface ICharacterActions
     {
         void OnInteract(InputAction.CallbackContext context);
@@ -470,5 +534,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IDialogueActions
     {
         void OnNext(InputAction.CallbackContext context);
+    }
+    public interface IPauseActions
+    {
+        void OnReturn(InputAction.CallbackContext context);
     }
 }
