@@ -23,14 +23,15 @@ public class RhythmGame : MonoBehaviour, IInteract
     {
         if(rhythmAction.triggered)
         {
-            if(isActive)
-            {
+            //if(isActive)
+            //{
                 StartRhythmGame();
-            }
-            else
-            {
-                EndRhythmGame();
-            }
+            //}
+            //else
+            //{
+            //
+            //    EndRhythmGame();
+            //}
         }
     }
 
@@ -42,14 +43,14 @@ public class RhythmGame : MonoBehaviour, IInteract
     public void StartRhythmGame()
     {
         rhythmGame.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         isActive = true;
     }
 
     public void EndRhythmGame()
     {
         rhythmGame.SetActive(false);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         isActive = false;
     }
 }

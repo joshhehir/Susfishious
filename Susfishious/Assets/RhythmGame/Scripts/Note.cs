@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class Note : MonoBehaviour
 {
-    private SpriteRenderer NoteRender;
+    private Image NoteRender;
     private BoxCollider2D NoteCenter;
     private CircleCollider2D NoteCircle;
     //private RhythmAudioManager myAudioSource;
@@ -38,7 +39,7 @@ public class Note : MonoBehaviour
     void Start()
     {
             
-        NoteRender = GetComponentInChildren<SpriteRenderer>();
+        NoteRender = GetComponentInChildren<Image>();
         NoteCenter = GetComponent<BoxCollider2D>();
         NoteCircle = GetComponent<CircleCollider2D>();
         //myAudioSource = Manager.GetComponent<RhythmAudioManager>();
@@ -49,7 +50,7 @@ public class Note : MonoBehaviour
 
         if (fTempo != 0)
         {
-            fTempo =   fTempo / 60f;
+            //fTempo =   fTempo / 60f;
         }
         else
         {
