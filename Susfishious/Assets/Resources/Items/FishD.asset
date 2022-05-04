@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ee2e45873ce504a88eca3f11d6d21b, type: 3}
   m_Name: FishD
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1e5c0b1547418804fbaeef4806ee100e, type: 3}
   name: Brittle Key Fish
   description: The mysteriously difficult to find fish scattered within the depths
     of the lakes. Are Wahoo fishes that had been mutated with keys that had descended

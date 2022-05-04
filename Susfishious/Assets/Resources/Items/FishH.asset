@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FishH
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  name: Spanner Fish
-  description: A Creek Chub that had been mutated with a spanner.
-  itemMutation: Spanner
+  name: 13 Inch Whisker Boot Fish
+  description: A Channel Catfish that had mutated with a 13 Inch boot that had one
+    night descended into the depths of the lake.
+  itemMutation: 13 Inch boot

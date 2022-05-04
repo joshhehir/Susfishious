@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ee2e45873ce504a88eca3f11d6d21b, type: 3}
   m_Name: FishB
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 3ec5b7b5770fa8e4cb841069367a9e1f, type: 3}
   name: Spanner Fish
   description: A Creek Chub that had been mutated with a spanner.
   itemMutation: Spanner

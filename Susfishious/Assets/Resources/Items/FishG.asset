@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ee2e45873ce504a88eca3f11d6d21b, type: 3}
   m_Name: FishG
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 1c836fc4b5ba56249881eef1e53e3116, type: 3}
   name: Red Herring
   description: A Herring that had turned scarlet red due to pollution. They tend
     to linger in armies, but are usually found everywhere in the large lake.
