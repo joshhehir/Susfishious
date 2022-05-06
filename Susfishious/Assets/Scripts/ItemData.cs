@@ -9,4 +9,6 @@ public class ItemData : ScriptableObject
     public string name;
     public string description;
     public string itemMutation;
+
+    public bool caught;
 }
