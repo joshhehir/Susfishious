@@ -127,16 +127,13 @@ public class ThirdPersonController : MonoBehaviour
         RaycastHit hitLower;
         if (Physics.Raycast(stepRayLower.transform.position, transform.TransformDirection(Vector3.forward), out hitLower, 0.5f))
         {
-            Debug.Log("hitting bottom", hitLower.collider.gameObject);
             RaycastHit hitUpper;
             if (!Physics.Raycast(stepRayUpper.transform.position, transform.TransformDirection(Vector3.forward), out hitUpper, 0.5f))
             {
-                Debug.Log("not hitting top", hitLower.collider.gameObject);
                 rb.position -= new Vector3(0f, -stepSmooth * Time.deltaTime, 0f);
             }
             else
             {
-                Debug.Log(hitUpper.collider.name);
             }
         }
         

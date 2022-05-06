@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d1c7a1921b4ced48bb70152f437b825, type: 3}
-  m_Name: Test
+  m_Script: {fileID: 11500000, guid: 7491aea98cb9d274aadf98642979f0f6, type: 3}
+  m_Name: TabSelected
   m_EditorClassIdentifier: 
-  threadStates: []
-  conversationLog: []
