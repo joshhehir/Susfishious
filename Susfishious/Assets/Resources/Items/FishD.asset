@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ee2e45873ce504a88eca3f11d6d21b, type: 3}
+  m_Name: FishD
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 1e5c0b1547418804fbaeef4806ee100e, type: 3}
+  name: Brittle Key Fish
+  description: The mysteriously difficult to find fish scattered within the depths
+    of the lakes. Are Wahoo fishes that had been mutated with keys that had descended
+    into the lakes.
+  itemMutation: Key
