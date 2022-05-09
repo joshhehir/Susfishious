@@ -47,7 +47,8 @@ public class DialogueController : MonoBehaviour
 
     public void Resume(Character c)
     {
-        if (c != null) currentCharacter = c;
+
+        if (currentCharacter != c) currentCharacter = c;
 
         foreach (Message m in container.GetComponentsInChildren<Message>())
         {
@@ -59,22 +60,23 @@ public class DialogueController : MonoBehaviour
         {
             if (d.isResponse)
             {
-                CreateResponse(d.text);
+                CreateResponse(d.text, true);
             }
             else
             {
-                CreateMessage(d.text);
+                CreateMessage(d.text, true);
             }
-        }
-
-        if (Thread.story.canContinue)
-        {
-            Continue();
         }
 
         if (Thread.story.currentChoices.Count > 0)
         {
+            Debug.Log("Generating Choices");
             GenerateChoices();
+        }
+        else
+        {
+            Thread.GetCurrentStory();
+            Continue();
         }
     }
 
@@ -95,89 +97,90 @@ public class DialogueController : MonoBehaviour
                     {
                         Continue();
                         //Thread.CheckTags();
-                        if (Thread.story.currentChoices.Count > 0)
-                        {
-                            GenerateChoices();
-                        }
+                        
                     }
 
                 }
             }
             else
             {
-                if (Thread.story.currentChoices.Count <= 0)
+                if (!lastMessage.FinishedRevealing)
                 {
-                    if (continueAction.triggered)
+                    if (continueAction.triggered) lastMessage.RevealAll();
+                }
+                else if (responses.Count == 0)
+                {
+                    if (continueAction.triggered && Thread.story.currentChoices.Count > 0)
                     {
-                        if (!lastMessage.FinishedRevealing)
-                        {
-                            lastMessage.RevealAll();
-                        }
-                        else
-                        {
-                            //end dialogue.
-                            Thread.CheckTags();
+                        GenerateChoices();
+                    }
+                    else if (continueAction.triggered)
+                    {
+                        //end dialogue.
+                        Thread.CheckTags();
 
-                            gameObject.SetActive(false);
-
-                        }
+                        gameObject.SetActive(false);
                     }
                 }
-
             }
         }
     }
 
     public void GenerateChoices()
     {
-        Debug.Log("generating choices");
+        //Destory all choices
+        DestoryChoices(-1);
+        responses.Clear();
         List<Choice> choices = Thread.story.currentChoices;
         Debug.Log(choices.Count);
         
         foreach (Choice c in choices)
         {
-            CreateResponse(c.text);
+            CreateResponse(c.text, false);
         }
     }
 
     public void ChoiceMadeByButton(GameObject g)
     {
+        GameObject chosen = null;
         foreach (GameObject gameObject in responses)
         {
             if (gameObject.GetComponentInChildren<DialogueChoice>().gameObject == g)
             {
-                MakeChoice(responses.IndexOf(gameObject));
+                chosen = gameObject;
             }
         }
+        MakeChoice(responses.IndexOf(chosen));
     }
 
     public void DestoryChoices(int index)
     {
-        Debug.Log(index + " : " + responses.Count);
         for (int i = 0; i < responses.Count; i++)
         {
-            if (i != index) Destroy(responses[i].gameObject);
+            if (i != index) Destroy(responses[i]);
+            
         }
+        responses.Clear();
     }
 
     private void Continue()
     {
         Thread.story.Continue();
-        CreateMessage(Thread.story.currentText);
+        CreateMessage(Thread.story.currentText, false);
     }
 
-    private void CreateMessage(string text)
+    private void CreateMessage(string text, bool skipTyping)
     {
         lastMessage = Instantiate(messagePrefab, container.transform).GetComponent<Message>();
-        lastMessage.SetText(text);
+        lastMessage.SetText(text, skipTyping);
     }
 
-    private void CreateResponse(string text)
+    private void CreateResponse(string text, bool history)
     {
         GameObject button = Instantiate(buttonPrefab, container.transform);
-        button.GetComponent<Message>().SetText(text);
-        responses.Add(button.gameObject);
-        button.transform.localScale = new Vector3(1, 1, 1);
+        button.GetComponent<Message>().SetText(text, true);
+        if (!history) responses.Add(button.gameObject);
+        //button.transform.localScale = new Vector3(1, 1, 1);
         button.GetComponentInChildren<TMP_Text>().text = text;
     }
 
@@ -192,6 +195,7 @@ public class DialogueController : MonoBehaviour
 
     private void OnDisable()
     {
+        DestoryChoices(-1);
         currentCharacter.SaveConversation(transform);
     }
 }

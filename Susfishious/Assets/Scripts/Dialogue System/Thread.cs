@@ -207,7 +207,7 @@ public class Thread : MonoBehaviour, IListenGameEvent
                 if (s.Contains("RESUME"))
                 {
 
-                    currentStitch = s.Replace("RESUME:", "").Trim();
+                    currentKnot = s.Replace("RESUME:", "").Trim();
                     ChangePath();
                 }
             }

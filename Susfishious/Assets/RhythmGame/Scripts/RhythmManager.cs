@@ -22,19 +22,20 @@ public class RhythmManager : MonoBehaviour
     void Start()
     {
         myNotes = GameObject.FindGameObjectsWithTag("Note");
-        start = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["Start"];
+        start = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["Interact"];
     }
 
     void Awake()
     {
         gStart.SetActive(true);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(start.triggered)
-        {
+        //if(start.triggered)
+        //{
             if (!bStarted)
             {
                 gStart.SetActive(false);
@@ -47,7 +48,7 @@ public class RhythmManager : MonoBehaviour
                 }
                 bStarted = true;
             }
-        }
+        //}
         //if(Input.GetKeyDown(KeyCode.R))
         //{
         //    Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);

@@ -10,8 +10,13 @@ public class Message : MonoBehaviour
     private TMP_Text content;
     [SerializeField]
     public string CurrentText;
+    //This is the panel within the message object
     [SerializeField]
     private RectTransform box;
+    //This is the message object itself
+    private RectTransform heightBox;
+    [SerializeField]
+    private bool skipTypeEffect;
 
 
     public bool FinishedRevealing => visibleCharacters >= CurrentText.Length;
@@ -33,10 +38,13 @@ public class Message : MonoBehaviour
         revealTimer = 0;
 
         visibleCharacters = 0;
+
+        heightBox = GetComponent<RectTransform>();
     }
 
-    public void SetText(string text)
+    public void SetText(string text, bool skipTyping)
     {
+        skipTypeEffect = skipTyping;
         CurrentText = text;
     }
 
@@ -44,7 +52,10 @@ public class Message : MonoBehaviour
     void Update()
     {
         revealTimer += Time.deltaTime;
-
+        if (skipTypeEffect && !FinishedRevealing)
+        {
+            RevealAll();
+        }
         if (revealTimer > (1 / revealSpeed))
         {
             RevealCharacter();
@@ -56,6 +67,7 @@ public class Message : MonoBehaviour
     {
         visibleCharacters = CurrentText.Length;
         content.text = CurrentText;
+        SetSize();
     }
 
     private void RevealCharacter()
@@ -66,11 +78,21 @@ public class Message : MonoBehaviour
         }
 
         content.text = CurrentText.Substring(0, ++visibleCharacters);
-        box.sizeDelta = new Vector2(20+CurrentText.Length*8, box.sizeDelta.y);
+        SetSize();
         if (content.text[content.text.Length - 1] != ' ')
         {
             //soundEffects.pitch = 0.3f + Random.Range(0.95f, 1.05f);
             //soundEffects.PlayOneShot(speak);
         }
+    }
+
+    //For formatting reasons, the message object has to be changed in height instead of the panel, to ensure that messages know how to layout in relation to one another correctly
+    private void SetSize()
+    {
+        var sizeX = Mathf.Min(20 + visibleCharacters * 8, 300);
+        var sizeY = 50 + Mathf.CeilToInt((20 + visibleCharacters * 8) / 300) * 20;
+        Debug.Log(sizeX + " : " + sizeY);
+        box.sizeDelta = new Vector2(sizeX, box.sizeDelta.y);
+        heightBox.sizeDelta = new Vector2(heightBox.sizeDelta.x, sizeY);
     }
 }

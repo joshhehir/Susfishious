@@ -255,6 +255,7 @@ MonoBehaviour:
   content: {fileID: 3655404560778514041}
   CurrentText: 
   box: {fileID: 453762855549214137}
+  skipTypeEffect: 0
   speak: {fileID: 0}
 --- !u!1 &8783091377744465400
 GameObject:
@@ -316,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 0.61236894, b: 0.51320755, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
