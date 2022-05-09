@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    public GameObject journal;
     public bool isPaused;
 
     private InputAction pauseAction;
@@ -17,7 +17,6 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pauseAction = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["Pause"];
-        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,16 +37,22 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        isPaused = true;
+        SetPauseMenuActive(true);
+    }
+
+    private void SetPauseMenuActive(bool active)
+    {
+        journal.SetActive(active);
+        //this will hopefully be more robust later
+        journal.GetComponent<JournalUI>().LoadTab(3);
+        Time.timeScale = active ? 0f : 1f;
+        isPaused = active;
     }
 
     public void ResumeGame()
     {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        isPaused = false;
+        SetPauseMenuActive(false);
+        
     }
 
     public void QuitToMainMenu()

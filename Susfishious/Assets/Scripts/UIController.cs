@@ -9,14 +9,19 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     private GameObject dialogueUI;
+    [SerializeField]
+    private GameObject journalUI;
+    [SerializeField]
+    private GameObject rhythmGameUI;
 
-    private bool changeState;
+    private InputAction openJournal;
 
     // Start is called before the first frame update
     void Start()
     {
         Character.startDialogue += StartDialogue;
         inputs = ThirdPersonController.instance.GetComponent<PlayerInput>();
+        openJournal = inputs.actions["OpenJournal"];
     }
 
     // Update is called once per frame
@@ -29,12 +34,20 @@ public class UIController : MonoBehaviour
                 Debug.Log("UI Disabled, actionmap set to character");
                 inputs.SwitchCurrentActionMap("Character");
             }
+            if (openJournal.triggered)
+            {
+                journalUI.SetActive(true);
+            }
         }
+        
     }
 
     public bool UIActive()
     {
         if (dialogueUI.activeInHierarchy == true) return true;
+        if (journalUI.activeInHierarchy == true) return true;
+        if (rhythmGameUI.activeInHierarchy == true) return true;
+
         return false;
     }
     

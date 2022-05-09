@@ -107,6 +107,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""5787cb54-6df0-49be-913a-1d21220c7e89"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +261,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e1d9622-a496-4e14-a08a-20b148fac070"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -284,13 +304,22 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Pause"",
+            ""name"": ""Journal"",
             ""id"": ""9f1619c5-2875-48a3-be1c-0839a2bb4cc3"",
             ""actions"": [
                 {
                     ""name"": ""Return "",
                     ""type"": ""Button"",
                     ""id"": ""8c0f899e-6afc-4cdd-bb7d-fca3c1dbad8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac0fe9a4-1834-4fe4-a515-7c900492da66"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -306,6 +335,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Return "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c556d6cf-ef04-4f1f-96cf-1067b48bb2f6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseJournal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -325,12 +365,14 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
         m_Character_Pause = m_Character.FindAction("Pause", throwIfNotFound: true);
         m_Character_Start = m_Character.FindAction("Start", throwIfNotFound: true);
+        m_Character_OpenJournal = m_Character.FindAction("OpenJournal", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Next = m_Dialogue.FindAction("Next", throwIfNotFound: true);
-        // Pause
-        m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
-        m_Pause_Return = m_Pause.FindAction("Return ", throwIfNotFound: true);
+        // Journal
+        m_Journal = asset.FindActionMap("Journal", throwIfNotFound: true);
+        m_Journal_Return = m_Journal.FindAction("Return ", throwIfNotFound: true);
+        m_Journal_CloseJournal = m_Journal.FindAction("CloseJournal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -399,6 +441,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Look;
     private readonly InputAction m_Character_Pause;
     private readonly InputAction m_Character_Start;
+    private readonly InputAction m_Character_OpenJournal;
     public struct CharacterActions
     {
         private @Controls m_Wrapper;
@@ -412,6 +455,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Character_Look;
         public InputAction @Pause => m_Wrapper.m_Character_Pause;
         public InputAction @Start => m_Wrapper.m_Character_Start;
+        public InputAction @OpenJournal => m_Wrapper.m_Character_OpenJournal;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +492,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Start.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
                 @Start.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
                 @Start.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @OpenJournal.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnOpenJournal;
+                @OpenJournal.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnOpenJournal;
+                @OpenJournal.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnOpenJournal;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -479,6 +526,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Start.started += instance.OnStart;
                 @Start.performed += instance.OnStart;
                 @Start.canceled += instance.OnStart;
+                @OpenJournal.started += instance.OnOpenJournal;
+                @OpenJournal.performed += instance.OnOpenJournal;
+                @OpenJournal.canceled += instance.OnOpenJournal;
             }
         }
     }
@@ -517,38 +567,46 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     }
     public DialogueActions @Dialogue => new DialogueActions(this);
 
-    // Pause
-    private readonly InputActionMap m_Pause;
-    private IPauseActions m_PauseActionsCallbackInterface;
-    private readonly InputAction m_Pause_Return;
-    public struct PauseActions
+    // Journal
+    private readonly InputActionMap m_Journal;
+    private IJournalActions m_JournalActionsCallbackInterface;
+    private readonly InputAction m_Journal_Return;
+    private readonly InputAction m_Journal_CloseJournal;
+    public struct JournalActions
     {
         private @Controls m_Wrapper;
-        public PauseActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Return => m_Wrapper.m_Pause_Return;
-        public InputActionMap Get() { return m_Wrapper.m_Pause; }
+        public JournalActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Return => m_Wrapper.m_Journal_Return;
+        public InputAction @CloseJournal => m_Wrapper.m_Journal_CloseJournal;
+        public InputActionMap Get() { return m_Wrapper.m_Journal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
-        public void SetCallbacks(IPauseActions instance)
+        public static implicit operator InputActionMap(JournalActions set) { return set.Get(); }
+        public void SetCallbacks(IJournalActions instance)
         {
-            if (m_Wrapper.m_PauseActionsCallbackInterface != null)
+            if (m_Wrapper.m_JournalActionsCallbackInterface != null)
             {
-                @Return.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
-                @Return.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
-                @Return.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
+                @Return.started -= m_Wrapper.m_JournalActionsCallbackInterface.OnReturn;
+                @Return.performed -= m_Wrapper.m_JournalActionsCallbackInterface.OnReturn;
+                @Return.canceled -= m_Wrapper.m_JournalActionsCallbackInterface.OnReturn;
+                @CloseJournal.started -= m_Wrapper.m_JournalActionsCallbackInterface.OnCloseJournal;
+                @CloseJournal.performed -= m_Wrapper.m_JournalActionsCallbackInterface.OnCloseJournal;
+                @CloseJournal.canceled -= m_Wrapper.m_JournalActionsCallbackInterface.OnCloseJournal;
             }
-            m_Wrapper.m_PauseActionsCallbackInterface = instance;
+            m_Wrapper.m_JournalActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Return.started += instance.OnReturn;
                 @Return.performed += instance.OnReturn;
                 @Return.canceled += instance.OnReturn;
+                @CloseJournal.started += instance.OnCloseJournal;
+                @CloseJournal.performed += instance.OnCloseJournal;
+                @CloseJournal.canceled += instance.OnCloseJournal;
             }
         }
     }
-    public PauseActions @Pause => new PauseActions(this);
+    public JournalActions @Journal => new JournalActions(this);
     public interface ICharacterActions
     {
         void OnInteract(InputAction.CallbackContext context);
@@ -560,13 +618,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
+        void OnOpenJournal(InputAction.CallbackContext context);
     }
     public interface IDialogueActions
     {
         void OnNext(InputAction.CallbackContext context);
     }
-    public interface IPauseActions
+    public interface IJournalActions
     {
         void OnReturn(InputAction.CallbackContext context);
+        void OnCloseJournal(InputAction.CallbackContext context);
     }
 }
