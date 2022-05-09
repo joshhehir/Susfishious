@@ -64,7 +64,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Start"",
+                    ""name"": ""Fish"",
                     ""type"": ""Button"",
                     ""id"": ""089e858a-048d-4548-9e31-2a2dabf6a920"",
                     ""expectedControlType"": ""Button"",
@@ -89,6 +89,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a7cc922-732f-4ec9-912f-dcce093f6ec2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""68e1f845-ddf7-47d0-a6b9-f40944b00109"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -187,7 +205,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Start"",
+                    ""action"": ""Fish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -210,6 +228,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""911f35b6-89bd-4489-8452-acf6ed0a48d3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20bb742d-3174-4b50-bd31-4fa3ea80655f"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -242,6 +282,34 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Pause"",
+            ""id"": ""9f1619c5-2875-48a3-be1c-0839a2bb4cc3"",
+            ""actions"": [
+                {
+                    ""name"": ""Return "",
+                    ""type"": ""Button"",
+                    ""id"": ""8c0f899e-6afc-4cdd-bb7d-fca3c1dbad8a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""360911be-f356-4868-8611-c3e922bcce19"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Return "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -252,12 +320,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Character_Move = m_Character.FindAction("Move", throwIfNotFound: true);
         m_Character_ActionA = m_Character.FindAction("ActionA", throwIfNotFound: true);
         m_Character_ActionB = m_Character.FindAction("ActionB", throwIfNotFound: true);
-        m_Character_Start = m_Character.FindAction("Start", throwIfNotFound: true);
+        m_Character_Fish = m_Character.FindAction("Fish", throwIfNotFound: true);
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_Look = m_Character.FindAction("Look", throwIfNotFound: true);
+        m_Character_Pause = m_Character.FindAction("Pause", throwIfNotFound: true);
+        m_Character_Start = m_Character.FindAction("Start", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Next = m_Dialogue.FindAction("Next", throwIfNotFound: true);
+        // Pause
+        m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
+        m_Pause_Return = m_Pause.FindAction("Return ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -321,9 +394,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Move;
     private readonly InputAction m_Character_ActionA;
     private readonly InputAction m_Character_ActionB;
-    private readonly InputAction m_Character_Start;
+    private readonly InputAction m_Character_Fish;
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_Look;
+    private readonly InputAction m_Character_Pause;
+    private readonly InputAction m_Character_Start;
     public struct CharacterActions
     {
         private @Controls m_Wrapper;
@@ -332,9 +407,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Character_Move;
         public InputAction @ActionA => m_Wrapper.m_Character_ActionA;
         public InputAction @ActionB => m_Wrapper.m_Character_ActionB;
-        public InputAction @Start => m_Wrapper.m_Character_Start;
+        public InputAction @Fish => m_Wrapper.m_Character_Fish;
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @Look => m_Wrapper.m_Character_Look;
+        public InputAction @Pause => m_Wrapper.m_Character_Pause;
+        public InputAction @Start => m_Wrapper.m_Character_Start;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -356,15 +433,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ActionB.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
                 @ActionB.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
                 @ActionB.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnActionB;
-                @Start.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
-                @Start.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
-                @Start.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Fish.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFish;
+                @Fish.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFish;
+                @Fish.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFish;
                 @Jump.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnJump;
                 @Look.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnLook;
+                @Pause.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Start.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -381,15 +464,21 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @ActionB.started += instance.OnActionB;
                 @ActionB.performed += instance.OnActionB;
                 @ActionB.canceled += instance.OnActionB;
-                @Start.started += instance.OnStart;
-                @Start.performed += instance.OnStart;
-                @Start.canceled += instance.OnStart;
+                @Fish.started += instance.OnFish;
+                @Fish.performed += instance.OnFish;
+                @Fish.canceled += instance.OnFish;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -427,18 +516,57 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public DialogueActions @Dialogue => new DialogueActions(this);
+
+    // Pause
+    private readonly InputActionMap m_Pause;
+    private IPauseActions m_PauseActionsCallbackInterface;
+    private readonly InputAction m_Pause_Return;
+    public struct PauseActions
+    {
+        private @Controls m_Wrapper;
+        public PauseActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Return => m_Wrapper.m_Pause_Return;
+        public InputActionMap Get() { return m_Wrapper.m_Pause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
+        public void SetCallbacks(IPauseActions instance)
+        {
+            if (m_Wrapper.m_PauseActionsCallbackInterface != null)
+            {
+                @Return.started -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
+                @Return.performed -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
+                @Return.canceled -= m_Wrapper.m_PauseActionsCallbackInterface.OnReturn;
+            }
+            m_Wrapper.m_PauseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Return.started += instance.OnReturn;
+                @Return.performed += instance.OnReturn;
+                @Return.canceled += instance.OnReturn;
+            }
+        }
+    }
+    public PauseActions @Pause => new PauseActions(this);
     public interface ICharacterActions
     {
         void OnInteract(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnActionA(InputAction.CallbackContext context);
         void OnActionB(InputAction.CallbackContext context);
-        void OnStart(InputAction.CallbackContext context);
+        void OnFish(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
     public interface IDialogueActions
     {
         void OnNext(InputAction.CallbackContext context);
+    }
+    public interface IPauseActions
+    {
+        void OnReturn(InputAction.CallbackContext context);
     }
 }
