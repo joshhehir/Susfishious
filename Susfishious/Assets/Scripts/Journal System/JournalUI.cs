@@ -25,11 +25,11 @@ public class JournalUI : MonoBehaviour
 
     public void SelectTab(GameObject tab)
     {
-        foreach (Tab t in tabs)
-        {
-            t.gameObject.SetActive(true);
-        }
-        tab.SetActive(false);
         header.SetTab(tab.GetComponent<Tab>());
+        foreach (GameObject g in menus)
+        {
+            g.SetActive(false);
+        }
+        menus[tab.transform.GetSiblingIndex()].SetActive(true);
     }
 }

@@ -6,6 +6,9 @@ using TMPro;
 
 public class FishEntry : MonoBehaviour
 {
+    [SerializeField]
+    private GameEvent fishSelected;
+
     private ItemData itemReference;
     [SerializeField]
     private Image image;
@@ -17,9 +20,19 @@ public class FishEntry : MonoBehaviour
         UpdateEntry();
     }
 
+    public ItemData GetItemData()
+    {
+        return itemReference;
+    }
+
     private void UpdateEntry()
     {
         image.sprite = itemReference.sprite;
         name.text = itemReference.name;
+    }
+
+    public void FishSelected()
+    {
+        fishSelected.Raise(gameObject);
     }
 }

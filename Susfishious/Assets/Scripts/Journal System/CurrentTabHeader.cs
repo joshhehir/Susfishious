@@ -7,13 +7,19 @@ using TMPro;
 public class CurrentTabHeader : MonoBehaviour
 {
     [SerializeField]
-    private Image tabImage;
-    [SerializeField]
-    private TMP_Text tabName;
+    private TMP_Text tabTitle;
 
     public void SetTab(Tab t)
     {
-        tabImage.sprite = t.Sprite;
-        tabName.text = t.Name;
+        if (tabTitle.text != t.Name)
+        {
+            tabTitle.text = t.Name;
+
+            int tabIndex = t.transform.GetSiblingIndex();
+            int titleIndex = tabTitle.transform.GetSiblingIndex();
+            if (tabIndex < titleIndex) tabIndex += 1;
+
+            tabTitle.transform.SetSiblingIndex(tabIndex);
+        }
     }
 }
