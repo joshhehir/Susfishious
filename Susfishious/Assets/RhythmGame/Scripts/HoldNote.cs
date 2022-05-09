@@ -28,15 +28,15 @@ public class HoldNote : Note
             //if (bPressable == true && bPressed == false)
             //{
                 myText.SetActive(false);
-                
-                if (ftimer > 1)
+                if (ftimer > 0.25)
                 {
+                    myManager.AddScore(30);
+                    myManager.DisplayFloatScore(300);
                     myManager.PlayAudio(myDrumAudioClip);
                     ftimer = 0;
                 }
 
-                myManager.AddScore(30);
-                myManager.DisplayFloatScore(300);
+
 
                 bPressed = true;
             //}
@@ -46,7 +46,7 @@ public class HoldNote : Note
             //if ( && bPressed == false)
             //{
                 myText.SetActive(false);
-                if (ftimer > 0.2)
+                if (ftimer > 0.25)
                 {
                     myManager.PlayAudio(myDrumAudioClip);
                     myManager.AddScore(30);
