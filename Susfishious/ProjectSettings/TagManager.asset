@@ -12,6 +12,7 @@ TagManager:
   - Score
   - RhythmAudio
   - ScoreFloatText
+  - ProgressMeter
   layers:
   - Default
   - TransparentFX

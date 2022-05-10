@@ -17,7 +17,12 @@ public class RhythmAudioManager : MonoBehaviour
         Playplayer=GetComponent<AudioSource>();
     }
 
-     // Update is called once per frame
+    private void OnEnable()
+    {
+        bStart = true;
+    }
+
+    // Update is called once per frame
     void Update()
     {
         if(bStart)

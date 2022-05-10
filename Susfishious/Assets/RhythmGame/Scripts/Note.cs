@@ -19,6 +19,7 @@ public class Note : MonoBehaviour
     public AudioClip myDrumAudioClip;
     public KeyCode myKey;
 
+    public Vector3 vOrigPos; 
     public float fTempo = 300;              // Float BPM
     public float fNoteDefaultSpeed = -1.0f; // Float note speed
     public bool bStart = false;             // Bool to start movement
@@ -60,7 +61,7 @@ public class Note : MonoBehaviour
         //Scroll();
     }
 
-   public void Activate()
+    public void Activate()
    {
        bStart = true;
 
