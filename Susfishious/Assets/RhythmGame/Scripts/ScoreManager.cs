@@ -77,6 +77,12 @@ public class ScoreManager : MonoBehaviour
         fCombo = 0;
     }
 
+    public void ResetScore()
+    {
+        fCombo = 0;
+        fScore = 0;
+    }
+
     public void DisplayFloatingScore(float aScore)
     {
         if (aScore == 0)

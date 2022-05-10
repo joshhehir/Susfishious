@@ -8,15 +8,10 @@ public class TapNote : Note
 {
     private CircleCollider2D NoteCircle;
 
-    //debug 
-    //public float ftimer = 0;
-
-    //public bool count = false;
-
     // Start is called before the first frame update
     void Start()
     {
-
+        vOrigPos = this.transform.localPosition;
         NoteRender = GetComponentInChildren<Image>();
         NoteCircle = GetComponent<CircleCollider2D>();
         NoteCenter = GetComponent<BoxCollider2D>();
@@ -95,6 +90,18 @@ public class TapNote : Note
 
     }
 
+    private void OnEnable()
+    {
+        vOrigPos = this.transform.localPosition;
+        myText.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        ResetNote();
+    }
+
+
     //Scrolls this Note object
     private void Scroll()
     {
@@ -102,6 +109,16 @@ public class TapNote : Note
         {
             this.transform.Translate(-fTempo * Time.deltaTime, 0, 0);
         }
+    }
+
+    public void ResetNote()
+    {
+        if (NoteRender != null)
+            NoteRender.enabled = true;
+
+        this.transform.localPosition = vOrigPos;
+        bPressed = false;
+        bStart = true;
     }
 
     public override void OnTriggerEnter2D(Collider2D other)

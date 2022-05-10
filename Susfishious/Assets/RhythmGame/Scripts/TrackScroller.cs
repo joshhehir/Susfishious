@@ -33,6 +33,10 @@ public class TrackScroller : MonoBehaviour
         //}
     }
 
+    public void ResetTrack()
+    {
+        this.transform.localPosition = new Vector3(0, 0, 0);
+    }
     public void Activate()
     {
         bStart = true;

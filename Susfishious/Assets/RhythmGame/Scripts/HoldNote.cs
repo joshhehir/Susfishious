@@ -67,6 +67,30 @@ public class HoldNote : Note
         }
     }
 
+    private void OnEnable()
+    {
+        vOrigPos = this.transform.localPosition;
+        myText.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        ResetNote();
+    }
+
+    public void ResetNote()
+    {
+        if (NoteRenders != null)
+            foreach (Image Renders in NoteRenders)
+            {
+                Renders.enabled = true;
+            }
+
+        this.transform.localPosition = vOrigPos;
+        bPressed = false;
+        bStart = true;
+    }
+
     //Scrolls this Note object
     private void Scroll()
     {

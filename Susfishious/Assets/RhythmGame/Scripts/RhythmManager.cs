@@ -31,6 +31,27 @@ public class RhythmManager : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        if(myTrack != null)
+        {
+            myTrack.ResetTrack();
+            if (myNotes != null)
+            {
+                foreach (var note in myNotes)
+                {
+                    note.SetActive(true);
+                }
+            }
+        }
+
+    }
+
+    private void OnDisable()
+    {
+        ResetScore();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -74,7 +95,10 @@ public class RhythmManager : MonoBehaviour
         myScore.ResetCombo();
     }
 
-
+    public void ResetScore()
+    {
+        myScore.ResetScore();
+    }
 
     public void PlayAudio(AudioClip aClip)
     {
