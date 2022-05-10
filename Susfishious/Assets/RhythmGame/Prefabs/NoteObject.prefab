@@ -139,7 +139,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5397329009355667202}
   - component: {fileID: 5397329009355667200}
-  - component: {fileID: 5397329009355667201}
+  - component: {fileID: 4365130154545008392}
+  - component: {fileID: 3339784454748384807}
   m_Layer: 0
   m_Name: TempText
   m_TagString: Untagged
@@ -164,8 +165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.05, y: 1.24}
-  m_SizeDelta: {x: 0.5183, y: 0.7613}
+  m_AnchoredPosition: {x: 0.41, y: 0.87}
+  m_SizeDelta: {x: 1.1722, y: 1.3102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5397329009355667200
 MeshRenderer:
@@ -205,11 +206,19 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1447187611
-  m_SortingLayer: 1
+  m_SortingLayerID: 1099634059
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5397329009355667201
+--- !u!222 &4365130154545008392
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5397329009355667203}
+  m_CullTransparentMesh: 1
+--- !u!114 &3339784454748384807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,7 +227,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5397329009355667203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -256,8 +265,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 0.5
+  m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -282,7 +291,7 @@ MonoBehaviour:
   checkPaddingRequired: 0
   m_isRichText: 1
   m_parseCtrlCharacters: 1
-  m_isOrthographic: 0
+  m_isOrthographic: 1
   m_isCullingEnabled: 0
   m_horizontalMapping: 0
   m_verticalMapping: 0
@@ -292,15 +301,12 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.018249989, w: 0.025264263}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  _SortingLayer: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
   m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 5397329009355667200}
-  m_maskType: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5397329009684108547
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,18 +411,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5397329009684108547}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a50bf91f3b1da45a13e42a5e37518c, type: 3}
+  m_Script: {fileID: 11500000, guid: cf6bd01819f5e4d458bd8aee9f4f50df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myText: {fileID: 5397329009355667203}
   Manager: {fileID: 0}
   myDrumAudioClip: {fileID: 8300000, guid: c567b013f00542e43ab6ab0004e2f985, type: 3}
   myKey: 122
-  fTempo: 120
+  fTempo: 300
   fNoteDefaultSpeed: -1
   bStart: 0
   bPressable: 0
   bExact: 0
+  bPressed: 0
+  ftimer: 0
 --- !u!58 &5397329009684108555
 CircleCollider2D:
   m_ObjectHideFlags: 0
