@@ -10,7 +10,10 @@ You've arrived in time for the annual fishing competition!
 *[What fishing competiton!?] -> compinfo
 
 ==yescomp
-Excellent! I'm sure you'll have a wondeful time here.
+Excellent! I'm sure you'll have a wondeful time here. #RESUME:yescomp
+->DONE
+
+==comeback
 Look's like you've been out fishing already. Have you had any luck yet?
 *[That's right...] -> yesfish
 *[No luck yet] -> nofish
