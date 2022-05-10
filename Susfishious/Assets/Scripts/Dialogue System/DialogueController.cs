@@ -21,7 +21,9 @@ public class DialogueController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dialogue;
     [SerializeField]
-    private Image portrait;
+    private Image playerPortrait;
+    [SerializeField]
+    private Image characterPortrait;
     [SerializeField]
     private AudioSource soundEffects;
 
