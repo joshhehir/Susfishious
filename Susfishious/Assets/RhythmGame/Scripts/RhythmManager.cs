@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class RhythmManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class RhythmManager : MonoBehaviour
     public GameObject gStart;
     public TrackScroller myTrack;
     public RhythmAudioManager myAudio;
+    public GameObject RhythmGame;
+    public Image ProgressMeterImage;
 
     private GameObject[] myNotes;
 
@@ -23,6 +26,7 @@ public class RhythmManager : MonoBehaviour
     {
         myNotes = GameObject.FindGameObjectsWithTag("Note");
         start = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["Interact"];
+        ProgressMeterImage = GameObject.FindGameObjectWithTag("ProgressMeter").GetComponent<Image>();
     }
 
     void Awake()
@@ -68,6 +72,13 @@ public class RhythmManager : MonoBehaviour
                     note.GetComponent<Note>().Activate();
                 }
                 bStarted = true;
+            }
+
+            ProgressMeterImage.fillAmount = 1 - myTrack.getProgress();
+
+            if (myTrack.getStatus() == true)
+            {
+                RhythmGame.SetActive(false);
             }
         //}
         //if(Input.GetKeyDown(KeyCode.R))
