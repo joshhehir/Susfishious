@@ -221,7 +221,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478715538769706946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478715539474410649}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 161866eb5a990db42ae537a9d7d09f0b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -616,6 +616,7 @@ MonoBehaviour:
   Manager: {fileID: 0}
   myDrumAudioClip: {fileID: 8300000, guid: b3e7334d43c8178478b506f6222436ab, type: 3}
   myKey: 120
+  vOrigPos: {x: 0, y: 0, z: 0}
   fTempo: 300
   fNoteDefaultSpeed: -1
   bStart: 0
@@ -625,6 +626,7 @@ MonoBehaviour:
   ftimer: 0
   NoteEnd: {fileID: 1478715538125432177}
   NoteRenders: []
+  HoldRender: {fileID: 6077287738344543543}
 --- !u!58 &1591116521776383605
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -654,7 +656,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.3973689, y: 0.008934855}
+  m_Offset: {x: 0.8773813, y: 0.008934855}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -665,7 +667,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 27.995617, y: 1.5780687}
+  m_Size: {x: 23.446115, y: 1.5780687}
   m_EdgeRadius: 0
 --- !u!222 &1591116521776383615
 CanvasRenderer:

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrackScroller : MonoBehaviour
 {
-    public float fTrackOriginalTimer = 85f;
+    public float fTrackOriginalTimer = 30f;
     public float fTime = 0f;
     public float fTrackSpeed = 3f;              // track multiplier
     public bool bStart = false;             // Bool Rhythm game start check
