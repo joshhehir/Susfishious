@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
     private TextMeshProUGUI ScoreText;
     private TextMeshProUGUI ComboText;
 
-    private TextMeshPro FloatingScore;
+    private TextMeshProUGUI FloatingScore;
     private float fTimer = 0;
 
     private float fScore = 0;
@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
             gScoreText = GameObject.FindGameObjectWithTag("ScoreFloatText");
         }
 
-        FloatingScore = gScoreText.GetComponent<TextMeshPro>();
+        FloatingScore = gScoreText.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -94,6 +94,6 @@ public class ScoreManager : MonoBehaviour
             FloatingScore.text = "+" + aScore.ToString();
         }
         
-        fTimer = 10;
+        fTimer = 0.7f;
     }
 }
