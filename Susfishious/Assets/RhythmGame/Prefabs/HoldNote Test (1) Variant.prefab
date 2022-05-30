@@ -121,23 +121,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1591116521776383613, guid: 562779abf5a875c4ea4d83531b530f2e, type: 3}
       propertyPath: m_Name
-      value: HoldNote Test (1)
+      value: HoldNote Test (1) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1591116521966625907, guid: 562779abf5a875c4ea4d83531b530f2e, type: 3}
       propertyPath: m_text
       value: Hold Z
       objectReference: {fileID: 0}
     - target: {fileID: 6077287738344543543, guid: 562779abf5a875c4ea4d83531b530f2e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c46ebe75a987fa64285e0a8b5c4a9e93, type: 3}
+    - target: {fileID: 6077287738344543543, guid: 562779abf5a875c4ea4d83531b530f2e, type: 3}
       propertyPath: m_Color.b
-      value: 0.75294125
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6077287738344543543, guid: 562779abf5a875c4ea4d83531b530f2e, type: 3}
       propertyPath: m_Color.g
-      value: 0.75294125
+      value: 0.8718877
       objectReference: {fileID: 0}
     - target: {fileID: 6077287738344543543, guid: 562779abf5a875c4ea4d83531b530f2e, type: 3}
       propertyPath: m_Color.r
-      value: 0.40784317
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 562779abf5a875c4ea4d83531b530f2e, type: 3}
