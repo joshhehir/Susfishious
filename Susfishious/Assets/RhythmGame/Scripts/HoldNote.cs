@@ -8,6 +8,7 @@ public class HoldNote : Note
 {
     public BoxCollider2D NoteEnd;
     public Image[] NoteRenders;
+    public Image HoldRender;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class HoldNote : Note
                 if (ftimer > 0.25)
                 {
                     myManager.AddScore(30);
-                    myManager.DisplayFloatScore(300);
+                    myManager.DisplayFloatScore(30);
                     myManager.PlayAudio(myDrumAudioClip);
                     ftimer = 0;
                 }
@@ -50,7 +51,7 @@ public class HoldNote : Note
                 {
                     myManager.PlayAudio(myDrumAudioClip);
                     myManager.AddScore(30);
-                    myManager.DisplayFloatScore(300);
+                    myManager.DisplayFloatScore(30);
                     ftimer = 0;
                 }
                 
@@ -79,6 +80,14 @@ public class HoldNote : Note
     }
 
     public void ResetNote()
+    {
+        HoldRender.enabled = true;
+        this.transform.localPosition = vOrigPos;
+        bPressed = false;
+        bStart = true;
+    }
+
+    public void ResetNoteOld()
     {
         if (NoteRenders != null)
             foreach (Image Renders in NoteRenders)
