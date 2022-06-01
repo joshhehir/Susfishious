@@ -7,18 +7,21 @@ public class PlayerController2D : MonoBehaviour
 {
     private PlayerInput input;
     private CharacterController character;
+    private Animator anim;
+    private SpriteRenderer render;
     private InputAction move;
 
     [SerializeField]
     private float movementForce;
     [SerializeField]
     private Vector3 forceDirection;
-
     // Start is called before the first frame update
     void Start()
     {
         character = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
+        anim = GetComponent<Animator>();
+        render = GetComponentInChildren<SpriteRenderer>();
 
         move = input.actions["Move"];
     }
@@ -36,5 +39,9 @@ public class PlayerController2D : MonoBehaviour
         }
         forceDirection = new Vector3(-move.ReadValue<Vector2>().y * movementForce, 0, move.ReadValue<Vector2>().x * movementForce);
         character.Move(forceDirection);
+
+        anim.SetBool("Walking", forceDirection.z > 0.1 || forceDirection.z < -0.1);
+        render.flipX = forceDirection.z < -0.1;
+        anim.SetBool("Down", forceDirection.x > 0.1);
     }
 }
