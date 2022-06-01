@@ -14,21 +14,25 @@ public class InteractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        interactAction = ThirdPersonController.instance.GetComponent<PlayerInput>().actions["Interact"];
+        interactAction = GameObject.Find("Player").GetComponent<PlayerInput>().actions["Interact"];
     }
 
     // Update is called once per frame
     void Update()
     {
         interactions.RemoveAll(delegate (Interaction i) { return i == null; });
-        if (interactAction.triggered)
+        if (interactions.Count > 0)
         {
-            selectedInteraction?.Interact();
+            if (interactAction.triggered)
+            {
+                selectedInteraction?.Interact();
+            }
         }
 
         if (interactions.Count == 1)
         {
             selectedInteraction = interactions[0];
+            
         }
         else
         {
