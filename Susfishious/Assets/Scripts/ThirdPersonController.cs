@@ -64,7 +64,7 @@ public class ThirdPersonController : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("speed", rb.velocity.magnitude / speed);
+        //animator.SetFloat("speed", rb.velocity.magnitude / speed);
         stepClimb();
     }
 
@@ -87,7 +87,7 @@ public class ThirdPersonController : MonoBehaviour
 
         //if (jump.triggered) DoJump();
 
-        LookAt();
+        //LookAt();
     }
 
     private void LookAt()
